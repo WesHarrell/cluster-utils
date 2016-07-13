@@ -1,0 +1,21 @@
+#!/bin/bash
+# module-find - script to workaround the brokenness of the module command
+# Usage: module-find <application>
+#	Eg:  module-find matlab
+
+if [ $# -lt 1 ]; then
+  echo ""
+  echo "Usage: module-find <string>"
+  echo "   Eg: module-find matlab"
+  echo ""
+  exit 1
+fi
+
+app="$*"
+if [[ "$app" =~ "R" ]]; then
+  module avail |& grep $app 
+else
+  module avail |& grep -i $app
+fi
+
+exit 0
