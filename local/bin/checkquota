@@ -13,7 +13,7 @@ out,err = p.communicate()
 
 lines = [b.strip() for b in out.split('\n')]
 
-print('{0:>30}  {1:10}  {2:10}  {3:10}'.format('Storage','Usage (GB)','Quota (GB)','Pct. Used'))
+print('\n\033[1m{0:>30}  {1:10}  {2:10}  {3:10}\033[0m'.format('Storage','Usage (GB)','Quota (GB)','Pct. Used'))
 
 for x in range(2,len(lines)-1):
 	if "pool" in lines[x]:
@@ -21,8 +21,8 @@ for x in range(2,len(lines)-1):
 	elif "home" in lines[x]:
 		fsname = "/home/" + luser
 	else:
-		fsname = "None"
+		fsname = ""
 	q = lines[x].strip().split()
 	print('{0:>30}  {1:10.2f}  {2:10.2f} {3:10.2%}'.format(fsname,float(q[1])/(1024**2), float(q[2])/(1024**2),float(q[1])/float(q[2])))
-
-
+#
+print ""
