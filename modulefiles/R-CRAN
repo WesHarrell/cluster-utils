@@ -1,0 +1,7 @@
+#%Modules
+#
+
+module-whatis "Adds the R library path to the pre-built CRAN modules"
+
+setenv R_LIBS /home/software/sloan/local/lib/R/el6
+

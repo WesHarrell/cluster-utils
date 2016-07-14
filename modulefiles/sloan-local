@@ -1,4 +1,7 @@
 #%Modules
 
+
+module-whatis   "This module initiates bin PATH for Sloan specific tools"
+
 prepend-path PATH /home/software/sloan/local/bin
 
