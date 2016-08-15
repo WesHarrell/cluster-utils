@@ -1,0 +1,24 @@
+*******************************************************************************
+**                                                                           **
+**		Welcome to the MIT Sloan School of Management		     **
+**			Research Computing System			     **
+**                                                                           **
+*******************************************************************************
+
+Unauthorized uses prohibited.
+
+For general questions or assistance requests, send mail to 
+rescomp@sloan.mit.edu.
+
+For help with SGE, try "man sge_intro" or "man submit".
+
+Do not run intensive jobs on this machine. Use qsub or qrsh to run your jobs
+on a compute node. 
+
+Your account has a disk quota. To get information on this, run quotacheck.
+
+For information about research computing at Sloan, including this system,
+please navigate to 
+https://mysloan.mit.edu/offices/sts/rsrchcomp/Pages/default.aspx
+
+_______________________________________________________________________________

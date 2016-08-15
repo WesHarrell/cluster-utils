@@ -1,0 +1,8 @@
+#%Modules
+#
+
+module-whatis "Adds the Microsoft .NET framework (via mono) to your environment"
+
+prepend-path PATH /home/software/sloan/dotNet/bin
+prepend-path LD_LIBRARY_PATH /home/software/sloan/dotNet/lib
+
