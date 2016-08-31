@@ -8,6 +8,7 @@
 # users complain.
 
 options( INSTALL_opts = "--no-test-load" )
+options( download.file.method = "wget")
 
 
 ##
