@@ -1,5 +1,9 @@
 #!/bin/bash
 #
+#
+# CFLAGS required to build some modules, eg cffi, which is a requirement for scrapy
+export CFLAGS="-I/home/software/sloan/local/lib/libffi-3.2.1/include -L/home/software/sloan/local/lib64"
+#
 module load engaging/python/2.7.11
 module load sloan/py27-modules
 #
@@ -15,7 +19,9 @@ pip2.7 install ggplot --target=/home/software/sloan/local/lib/py27 --upgrade
 pip2.7 install Bokeh --target=/home/software/sloan/local/lib/py27 --upgrade
 pip2.7 install PyMC --target=/home/software/sloan/local/lib/py27 --upgrade
 pip2.7 install Scikit-learn --target=/home/software/sloan/local/lib/py27 --upgrade
+pip2.7 install Scikit-image --target=/home/software/sloan/local/lib/py27 --upgrade
 pip2.7 install SymPy --target=/home/software/sloan/local/lib/py27 --upgrade
 pip2.7 install Statsmodels --target=/home/software/sloan/local/lib/py27 --upgrade
 pip2.7 install jupyter-core --target=/home/software/sloan/local/lib/py27 --upgrade
+pip2.7 install Scrapy --target=/home/software/sloan/local/lib/py27 --upgrade
 
