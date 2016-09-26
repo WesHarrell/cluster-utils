@@ -1,0 +1,5 @@
+#!/bin/bash
+#
+# Show sloan users
+#
+ldapsearch -x cn=sched_mit_sloan | grep ^member | awk -F": " '{print $2}'
