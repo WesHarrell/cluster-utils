@@ -7,8 +7,26 @@
 #-a all
 #-p partition
 #-m my partitions (default) based on groups membership
-echo "GENERAL SLOAN QUEUE"
+#
+RED='\033[0;31m'
+NC='\033[0m'
+echo ""
+printf "${RED}SLOAN BATCH PARTITION${NC}\n"
 sinfo -p sched_mit_sloan
 echo ""
-echo "DAVID THESMAR GPU QUEUE"
-sinfo -p sched_mit_thesmar
+
+if [[ `groups` =~ .*sched_mit_thesmar.* ]]; then
+  printf "${RED}DAVID THESMAR GPU PARTITION${NC}\n"
+  sinfo -p sched_mit_thesmar
+  echo ""
+fi
+
+printf "${RED}GENERAL EO PARTITIONS${NC}\n"
+sinfo -p sched_any_quicktest
+echo ""
+sinfo -p sched_quadgpu_eval
+echo ""
+sinfo -p newnodes
+echo ""
+
+exit 0
