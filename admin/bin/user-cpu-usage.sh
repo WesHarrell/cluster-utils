@@ -9,7 +9,7 @@ fi
 STARTTIME=$1
 USERTMP=`mktemp`
 CPUTMP=`mktemp`
-for i in `showu | grep ^member  | awk '{print $2}' | tee $USERTMP`; do 
+for i in `eo-show-users |  tee $USERTMP`; do 
   sacct -u $i -S $STARTTIME --format CPUTimeRAW -X | grep [0-9] | awk '{sec+=$1} END {print sec/3600}' >> $CPUTMP
 done
 paste $USERTMP $CPUTMP >> ~/eo-usage-since-$STARTTIME
