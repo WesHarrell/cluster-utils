@@ -1,0 +1,274 @@
+<!DOCTYPE html SYSTEM "html.dtd">
+<!-- saved from url=(0062)http://www.amstat.org/publications/jse/v1n1/datasets.lock.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"> <title>Journal of Statistics Education, V1N1: Lock</title></head>                         
+<body bgcolor="#ffffff">
+<h1>  1993 New Car Data</h1>                             Robin H.
+Lock
+<br>                        St. Lawrence University
+<br>
+<br>            <cite> Journal of Statistics Education </cite> v.1,
+n.1 (1993)           
+<p> Copyright (c) 1993 by Robin H. Lock, all rights          reserved. 
+This text may be freely shared among          individuals, but it may
+not be republished in any          medium without express written
+consent from the author          and advance notification of the editor.
+</p>     
+ <hr>
+<p> <strong> Key Words</strong>: Cars; Classroom data; Dataset;
+Introductory      statistics.
+</p>                                
+<h2>  Abstract</h2>      
+<p>     The 93CARS dataset contains information on 93 new          cars
+for the 1993 model year.  Measures given          include price, mpg
+ratings, engine size, body size,          and indicators of features. 
+The 26 variables in          the dataset offer sufficient variety to
+illustrate          a broad range of statistical techniques typically   
+      found in introductory courses.</p>                        
+<h1>      1.  Introduction</h1> 
+<p>1    The 1993 New Car data was inspired by a similar dataset for    
+ 1989 model cars which has been included among the sample      data for
+the<a href="http://www.amstat.org/publications/jse/v1n1/datasets.lock.html#execustat"> <cite> Student Edition of Execustat</cite></a>
+ (PWS-KENT 1990).      We have used <cite>Execustat</cite>'s  CARS89
+data to demonstrate many      points in both introductory and second
+level courses in      applied statistics.  In what follows we give a
+brief      description of the updated and expanded 93CARS dataset and   
+  suggest several ways it might be used in class.  
+</p>                        
+<h1>   2.  Data Sources
+</h1> 
+<p>2    Data were obtained from two sources,  <a href="http://www.amstat.org/publications/jse/v1n1/datasets.lock.html#consumer"><cite>
+The 1993 Cars - Annual      Auto Issue</cite></a>  from  <cite>Consumer
+Reports</cite>   and the  <a href="http://www.amstat.org/publications/jse/v1n1/datasets.lock.html#pace"><cite>PACE New Car &amp;     
+Truck 1993 Buying Guide </cite></a>.  Passenger cars or vans that were  
+   included in both sources were eligible for selection.  A      random
+sample of models given in the
+<cite> PACE Buying Guide </cite> was      chosen and matched to cars
+covered in the <cite> Consumer      Reports</cite>  issue until a
+desired sample size of 93 was      reached.  Vehicles in the Pickup
+Truck and Sport/Utility      category were excluded due to incomplete
+information in the       <cite>Consumer Reports  </cite>article.  We
+also avoided multiple      inclusions of cars which were essentially the
+same model      (such as the Dodge Shadow and Plymouth Sundance).
+</p>                       
+<h1> 3.  Description of the Data</h1> 
+<p>3    Each data case starts with the MANUFACTURER (e.g.,     
+Chevrolet, Audi, Honda,...), MODEL (e.g., Caprice, 90,      Accord,...),
+and a TYPE (Small, Sporty, Compact, Midsize,      Large, Van).  The
+types were determined by the  <cite>Consumer      Reports</cite> 
+classifications.  The other 23 variables are all      numeric.  Three
+PRICE variables give a "minimum" cost for a      basic model, a
+"maximum" for a model equipped with lots of      options, and a
+"midrange" as the average of the two      extremes.  The EPA fuel
+efficiency ratings are given as both      CITY and HIGHWAY miles per
+gallon (MPG).
+</p>
+<p>4    Several measures reflect relative size and power of the     
+standard engine.  These include the number of CYLINDERS,      engine
+displacement SIZE (in liters), maximum HORSEPOWER,      and the
+revolutions per minute (RPM) at which the maximum      power is
+achieved.  A measure that might be less familiar to      most students
+is the number of REVOLUTIONS of the engine      needed for the car to
+travel one mile in its highest gear      (automatic transmission).
+</p>
+<p>5    Indications of each car's size are the LENGTH, WIDTH,     
+WHEELBASE, U-TURN diameter, REAR seat room, LUGGAGE      capacity, and
+size of the FUEL tank.  Car weights differed      somewhat between the
+two data sources.  We used the WEIGHT      given by  <cite>Consumer
+Reports</cite>  which included a full gas tank      and
+air-conditioning, if available.
+</p>
+<p>6    Other variables note the presence of standard AIR BAGS     
+(driver or passenger), the type of DRIVETRAIN (front-wheel,     
+rear-wheel, or all-wheel), and an option for a MANUAL      transmission.
+ A final variable categorizes the manufacturer      as domestic (U.S.)
+or foreign, although this distinction is      becoming less and less
+clear.
+</p>
+<p>7    The only missing values are for CYLINDERS in the rotary     
+engine Mazda RX-7, REAR SEAT room for the two-seaters      (Corvette and
+RX-7), and LUGGAGE capacity for the vans and      two-seaters.
+</p>
+<p> 8    A detailed key to the variables in the file can be found in   
+   the <a href="http://www.amstat.org/publications/jse/v1n1/datasets.lock.html#appendix">Appendix </a>and the 
+   
+<a href="http://www.amstat.org/publications/jse/datasets/93cars.txt">93cars.txt</a> file   
+   which
+is available in       the data archives. 
+</p>                          
+
+<h1> 4.  Pedagogical Uses</h1> 
+<p> 9    This is a multi-purpose dataset which can be used at many     
+ points in a course.  We have often used <cite> Execustat</cite>'s 
+similar        CARS89 data as an initial example for demonstrating the  
+    statistical package to students in the second week of an      
+introductory course.  This class typically is held in a        classroom
+equipped with a computer and projection system,        with the
+instructor "driving" the software.  Despite having        only studied
+some descriptive techniques, students are easily       drawn into a
+discussion of the interesting features of the        data.  They tend to
+be familiar with most of the variables        (and specific car models).
+ They anticipate relationships        between the variables, are quick
+to generate both questions        and explanations, and enjoy guessing
+at the identity of        outliers in the plots.  Inevitably, the class
+period ends        long before the stream of questions is exhausted.
+</p>
+<p>10    In addition to numerous good numeric variables, the data      
+provide several interesting options for dividing cars into      
+different comparison groups (e.g., by DOMESTIC, TYPE,       AIRBAGS,
+DRIVETRAIN, or MANUAL transmission).  Most of our       early analyses
+use only basic summary statistics or       graphics, yet a discussion of
+side-by-side boxplots of       highway MPG for domestic vs. foreign
+manufacturers lays a       good foundation for later, more formal, work
+on testing       hypotheses.  As those techniques are subsequently
+developed,       we can continue to come back to the car data --
+establishing       a familiar thread that can run throughout the course.
+ We       don't always have to be "on-line" in a computer session to    
+  use the data.  Often a few summary statistics may be all       that
+are required to motivate an example.  Students can also       be
+encouraged to do their own independent explorations.
+</p>
+<p>11    As one might expect, there are numerous relationships among   
+   the variables which provide excellent examples for       discussing
+scatterplots, correlation, and regression       techniques.  One can
+easily find pairs of variables which       demonstrate strong or weak,
+positive or negative       associations.  PRICE and MPG variables tend
+to be popular       choices as "dependent" variables in studying
+regression       models, although students need to exhibit some care in 
+     approaching multiple regression situations since many of the      
+potential predictors are often highly correlated among       themselves.
+</p>
+<p>12    We conclude by suggesting some specific ways the data may be  
+    used to illustrate certain topics.  A little time spent      
+exploring the data will quickly stimulate additional      
+possibilities.
+</p> 
+<p>13    <em>Box-whisker plot</em>:  PRICE or MPG variables give good 
+         examples of somewhat skewed data with potential          
+outliers among the upper fences.
+</p>
+<p>14  <em>  Small sample confidence interval for a mean</em>:  Look
+at HPW           or RPM within one TYPE of car.  Different students may 
+         be assigned different TYPEs.
+</p>
+<p>15    <em>Difference in means between two independent samples</em>:
+          Compare PRICE levels between DOMESTIC and FOREIGN cars.       
+   Also watch out for significant differences in the           variances
+between these two groups.
+</p>
+<p>16    <em>One-way ANOVA for difference in means</em>:  Check out
+city MPG           ratings between the three DRIVETRAIN categories.
+</p>
+<p>17   <em> Contingency table</em>:  Construct and analyze a two-way
+table           of AIRBAGS by FOREIGN/DOMESTIC.
+</p>
+<p>18   <em> Scatterplot</em>:  Plot PRICE by MPG.  Identify any
+unusual           points.
+</p>
+<p>19    <em>Regression/correlation</em>:  REVOLUTIONS per mile tends
+to be a           less familiar variable to the students.  Investigate  
+        relationships and/or build models for REVOLUTIONS based         
+ on a restricted subset of other engine or body size          
+variables.
+</p>
+<p>20   <em> An exam question</em>:  Provide computer output for      
+    investigating the relationship between number of           CYLINDERS
+and MPG using only 4, 6, and 8 cylinder cars.           Have students
+interpret the results of both a one-way           ANOVA and a simple
+linear regression.  Which approach           is more appropriate? 
+</p>                         
+<h1>  5.  Getting the Data</h1> 
+
+<p>21    The file <a href="http://www.amstat.org/publications/jse/datasets/93cars.dat.txt">93cars.dat.txt</a>
+contains the raw data.  The file
+<a href="http://www.amstat.org/publications/jse/datasets/93cars.txt">93cars.txt</a> is a
+documentation file containing a brief description of the
+dataset.
+</p>
+
+<a name="appendix"><hr></a>
+<p>
+</p><h1> Appendix - Key to Variables in 93cars.dat.txt</h1>
+
+        Line 1       Columns     
+<ul>  
+<li>1 - 14  Manufacturer   </li>   
+<li>  15 - 29  Model
+</li>      
+<li>30 - 36  Type                    Small, Sporty, Compact, Midsize,
+Large                    (as defined in the  Consumer Reports  article)
+</li>    
+<li>  38 - 41  Minimum Price (in $1,000) -                    Price for
+basic version of this model      </li> 
+<li>  43 - 46  Midrange Price (in $1,000) -                     Average
+of Min and Max prices     </li>
+<li>  48 - 51  Maximum Price (in $1,000) -                    Price for
+a premium version
+</li>      
+<li>  53 - 54  City MPG (miles per gallon by EPA rating)      </li>  
+<li>56 - 57  Highway MPG      
+</li>
+<li>  59 - 59  Air Bags standard                    0 = none, 1 =
+driver only,                    2 = driver &amp; passenger     </li>
+<li>  61 - 61  Drive train type                     0 = rear wheel
+drive                    1 = front wheel drive                    2 =
+all wheel drive  
+</li>   
+<li> 63 - 63  Number of cylinders    </li>    
+<li>65 - 67  Engine size (liters)    
+</li>
+<li>69 - 71 Horsepower (maximum)  </li>
+<li>73 - 76 RPM (revs per minute at maximum horsepower)</li>
+</ul>       Line 2       Columns      
+<ul><li>  1 -  4  Engine revolutions per mile (in highest gear)  </li>
+   
+<li> 6 -  6  Manual transmission available                    0 = No, 1
+= Yes
+</li>    
+<li>  8 - 11  Fuel tank capacity (gallons)     </li>
+<li>  13 - 13  Passenger capacity (persons)
+</li>    
+<li> 15 - 17  Length    (inches)</li>     
+<li> 19 - 21  Wheelbase (inches)     </li>
+<li>  23 - 24  Width     (inches)    </li> 
+<li> 26 - 27  U-turn space (feet)  </li>   
+<li> 29 - 32  Rear seat room (inches)    </li>  
+<li>34 - 35  Luggage capacity (cu. ft.)
+</li>    
+<li> 37 - 40  Weight (pounds)   </li>   
+<li>42 - 42  Domestic?                    0 = non-U.S. manufacturer    
+               1 = U.S. manufacturer
+</li></ul>       Values are aligned and delimited by blanks.
+<br>       Missing values are denoted with *.
+<br>       There are two data lines for each case.                     
+<p></p>
+  
+<hr>     
+<h1>References</h1>         
+<p><cite>PACE New Car &amp; Truck 1993 Buying Guide </cite> <a name="pace">
+
+993)</a>, Milwaukee,           WI: Pace Publications Inc.    </p>   
+<p>  <cite>Student Edition of Execustat</cite><a name="execustat"> 
+(1990)</a>, Boston, MA: PWS-KENT           Publishing Co.   </p>
+<p>  <cite>     Consumer Reports:  The 1993 Cars - Annual Auto Issue
+</cite>           (<a name="consumer">April 1993</a>), Yonkers, NY:
+Consumers Union.     </p> 
+<hr>
+<p>     Robin H. Lock  
+<br>    Mathematics Department  
+<br>    St. Lawrence University  
+<br>    Canton, NY  13617 
+<br>     (315) 379-5960     
+</p><address> rlock@stlawu.bitnet
+</address>
+<p></p>
+<hr>
+
+
+
+<a href="http://www.amstat.org/publications/jse/toc.html#1993">Return to Table of Contents</a> | 
+
+<a href="http://www.amstat.org/publications/jse/index.html">Return to the JSE Home Page</a>
+
+
+
+</body></html>

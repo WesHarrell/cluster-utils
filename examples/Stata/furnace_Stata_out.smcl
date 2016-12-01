@@ -1,0 +1,202 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\sfinch\Desktop\furnace_Stata_out.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res} 1 Sep 2016, 12:56:16
+{txt}
+{com}. 
+. import delimited Type CHArea CHShape CHHght CHLiner House Age BTUIn BTUOut Damper using "furnace.csv"
+{res}{text}(10 vars, 90 obs)
+
+{com}. 
+. keep CHArea CHHght Age BTUIn BTUOut Damper
+{txt}
+{com}. 
+. list in 1/25, separator(0)
+{txt}
+     {c TLC}{hline 8}{c -}{hline 8}{c -}{hline 5}{c -}{hline 7}{c -}{hline 8}{c -}{hline 8}{c TRC}
+     {c |} {res}CHArea   CHHght   Age   BTUIn   BTUOut   Damper {txt}{c |}
+     {c LT}{hline 8}{c -}{hline 8}{c -}{hline 5}{c -}{hline 7}{c -}{hline 8}{c -}{hline 8}{c RT}
+  1. {c |} {res}    28       20     8    7.87     8.25        1 {txt}{c |}
+  2. {c |} {res}   144       26    75    9.43     9.66        1 {txt}{c |}
+  3. {c |} {res}    80       30    44    7.16     8.33        1 {txt}{c |}
+  4. {c |} {res}   100       24    75    8.67     8.82        1 {txt}{c |}
+  5. {c |} {res}   168       35    30   12.31    12.06        1 {txt}{c |}
+  6. {c |} {res}    28       17     4    9.84     9.67        1 {txt}{c |}
+  7. {c |} {res}    64       24    45    16.9    17.51        1 {txt}{c |}
+  8. {c |} {res}    64       18    16   10.04    10.79        1 {txt}{c |}
+  9. {c |} {res}    96       25    45   12.62    13.59        1 {txt}{c |}
+ 10. {c |} {res}   108       27    40    7.62     7.99        1 {txt}{c |}
+ 11. {c |} {res}    64       16    22   11.12    12.64        1 {txt}{c |}
+ 12. {c |} {res}    63       30    40   13.43    14.42        1 {txt}{c |}
+ 13. {c |} {res}    42       15    13    9.07     9.25        1 {txt}{c |}
+ 14. {c |} {res}   117       25    99    6.94     7.79        1 {txt}{c |}
+ 15. {c |} {res}    64       18    19   10.28    11.29        1 {txt}{c |}
+ 16. {c |} {res}    28       17    30    9.37    10.26        1 {txt}{c |}
+ 17. {c |} {res}    64       28    60    7.93     9.46        1 {txt}{c |}
+ 18. {c |} {res}    64       19    30   13.96    14.77        1 {txt}{c |}
+ 19. {c |} {res}    28       26    10     6.8     7.21        1 {txt}{c |}
+ 20. {c |} {res}    80       27    60       4     4.29        1 {txt}{c |}
+ 21. {c |} {res}    28       14    24    8.58     9.81        1 {txt}{c |}
+ 22. {c |} {res}    28       23    70       8     8.41        1 {txt}{c |}
+ 23. {c |} {res}    64       17    12    5.98     6.78        1 {txt}{c |}
+ 24. {c |} {res}     .       30    60   15.24     16.3        1 {txt}{c |}
+ 25. {c |} {res}    64       27    40    8.54     9.01        1 {txt}{c |}
+     {c BLC}{hline 8}{c -}{hline 8}{c -}{hline 5}{c -}{hline 7}{c -}{hline 8}{c -}{hline 8}{c BRC}
+
+{com}. 
+. summarize CHArea CHHght Age BTUIn BTUOut
+
+{txt}    Variable {c |}        Obs        Mean    Std. Dev.       Min        Max
+{hline 13}{c +}{hline 57}
+{space 6}CHArea {c |}{res}         89     62.5618    32.53074         28        168
+{txt}{space 6}CHHght {c |}{res}         90    21.96667    5.925473         14         39
+{txt}{space 9}Age {c |}{res}         90    38.56667    31.09321          1         99
+{txt}{space 7}BTUIn {c |}{res}         90    10.03844     2.86799       2.97      18.26
+{txt}{space 6}BTUOut {c |}{res}         90    10.81311    3.088407        3.2      20.55
+{txt}
+{com}. 
+. * type "findit univar" and search for "sg67_1" 
+. 
+. quietly net from http://www.stata.com/stb/stb51/
+{txt}
+{com}. quietly net install sg67_1.pkg 
+{txt}
+{com}. 
+. univar CHArea CHHght Age BTUIn BTUOut
+                                        {txt}-------------- Quantiles --------------
+Variable       n     Mean     S.D.      Min      .25      Mdn      .75      Max
+-------------------------------------------------------------------------------
+  CHArea {res}     89    62.56    32.53    28.00    28.00    64.00    80.00   168.00
+  {txt}CHHght {res}     90    21.97     5.93    14.00    17.00    20.00    27.00    39.00
+     {txt}Age {res}     90    38.57    31.09     1.00    12.00    30.00    60.00    99.00
+   {txt}BTUIn {res}     90    10.04     2.87     2.97     7.93     9.84    12.16    18.26
+  {txt}BTUOut {res}     90    10.81     3.09     3.20     8.67    10.74    12.85    20.55
+{txt}-------------------------------------------------------------------------------
+
+{com}. 
+. tabulate Damper
+
+     {txt}Damper {c |}      Freq.     Percent        Cum.
+{hline 12}{c +}{hline 35}
+          1 {c |}{res}         40       44.44       44.44
+{txt}          2 {c |}{res}         50       55.56      100.00
+{txt}{hline 12}{c +}{hline 35}
+      Total {c |}{res}         90      100.00
+{txt}
+{com}. 
+. graph twoway (scatter BTUOut BTUIn if Damper==1, msymbol(Oh) mcolor(blue)) (scatter BTUOut BTUIn if Damper==2, msymbol(X) mcolor(red)), title (BTUIn vs BTUOut for Stratified Furnace Data) legend (label(1 EVD) label(2 TVD)) saving("fs1.gph",replace)
+{res}{txt}(note: file fs1.gph not found)
+{res}{txt}(file fs1.gph saved)
+
+{com}. graph export "fs1.pdf" 
+{txt}(file fs1.pdf written in PDF format)
+
+{com}. 
+. histogram(BTUIn), frequency normal title (BTUIn Histogram & Normal Fit) saving("fs2.gph",replace) 
+{txt}(bin={res}9{txt}, start={res}2.97{txt}, width={res}1.6988889{txt})
+{res}{txt}(note: file fs2.gph not found)
+{res}{txt}(file fs2.gph saved)
+
+{com}. graph export "fs2.pdf"
+{txt}(file fs2.pdf written in PDF format)
+
+{com}. 
+. ci means BTUIn, level(90)
+
+{txt}    Variable {c |}        Obs        Mean    Std. Err.       [90% Conf. Interval]
+{hline 13}{c +}{hline 63}
+       BTUIn {c |}{col 16}{res}        90{col 29} 10.03844{col 41} .3023127{col 57} 9.535954{col 69} 10.54094{txt}
+
+{com}. 
+. ci variances BTUIn, level(90) sd
+
+{txt}{col 5}Variable {c |}{col 23}Obs{col 32}Std. Dev.{col 44}   [90% Conf. Interval]
+{hline 13}{c +}{hline 52}
+       BTUIn {c |}{col 16}{res}        90{col 31}  2.86799{col 46} 2.556354{col 58} 3.275093
+{txt}
+{com}. 
+. regress BTUOut BTUIn
+
+{txt}      Source {c |}       SS           df       MS      Number of obs   ={res}        90
+{txt}{hline 13}{c +}{hline 34}   F(1, 88)        = {res}  2262.95
+{txt}       Model {c |} {res} 817.129201         1  817.129201   {txt}Prob > F        ={res}    0.0000
+{txt}    Residual {c |} {res} 31.7758892        88   .36108965   {txt}R-squared       ={res}    0.9626
+{txt}{hline 13}{c +}{hline 34}   Adj R-squared   ={res}    0.9621
+{txt}       Total {c |} {res}  848.90509        89  9.53825944   {txt}Root MSE        =   {res} .60091
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}      BTUOut{col 14}{c |}      Coef.{col 26}   Std. Err.{col 38}      t{col 46}   P>|t|{col 54}     [95% Con{col 67}f. Interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 7}BTUIn {c |}{col 14}{res}{space 2} 1.056508{col 26}{space 2} .0222093{col 37}{space 1}   47.57{col 46}{space 3}0.000{col 54}{space 4} 1.012371{col 67}{space 3} 1.100644
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .2074168{col 26}{space 2} .2317701{col 37}{space 1}    0.89{col 46}{space 3}0.373{col 54}{space 4}-.2531776{col 67}{space 3} .6680112
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}{txt}
+{com}. 
+. graph twoway (lfitci BTUOut BTUIn, ciplot(rline)) (scatter BTUOut BTUIn, msymbol(d) mcolor(orange)), saving("fs3.gph",replace) 
+{res}{txt}(note: file fs3.gph not found)
+{res}{txt}(file fs3.gph saved)
+
+{com}. graph export "fs3.pdf"
+{txt}(file fs3.pdf written in PDF format)
+
+{com}. 
+. predict resids, residuals
+{txt}
+{com}. 
+. predict std_resids, rstandard 
+{txt}
+{com}. 
+. predict cooks_D, cooksd
+{txt}
+{com}. 
+. predict fit_values
+{txt}(option {bf:xb} assumed; fitted values)
+
+{com}. 
+. label var fit_values "Fitted values"
+{txt}
+{com}. 
+. rvfplot, yline(0) title("Residuals vs Fitted") name(fs4)
+{res}{txt}
+{com}. 
+. qnorm std_resids, title("Normal Q-Q") name(fs5)
+{res}{txt}
+{com}. 
+. quietly net from http://www.stata-journal.com/software/sj10-1/
+{txt}
+{com}. quietly net install gr0009_1.pkg
+{txt}
+{com}. 
+. rvfplot2, rstandard rscale(sqrt(abs(X))) lowess title("Scale-Location")  name(fs6)
+{res}{txt}
+{com}. 
+. generate index = _n
+{txt}
+{com}. 
+. label var index "Observation number"
+{txt}
+{com}. 
+. label var cooks_D "Cook's distance"
+{txt}
+{com}. 
+. graph twoway scatter cooks_D index, msymbol(none) mlabel(index) mlabposition(0) title("Cook's Distance") name(fs7)
+{res}{txt}
+{com}. 
+. graph combine fs4 fs5 fs6 fs7, saving("fs0.gph",replace) 
+{res}{txt}(note: file fs0.gph not found)
+{res}{txt}(file fs0.gph saved)
+
+{com}. graph export "fs0.pdf"
+{txt}(file fs0.pdf written in PDF format)
+
+{com}. 
+. log close
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}C:\Users\sfinch\Desktop\furnace_Stata_out.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res} 1 Sep 2016, 12:56:27
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}

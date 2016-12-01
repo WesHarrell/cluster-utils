@@ -1,0 +1,44 @@
+NAME:  Furnace
+TYPE:  Observational Study
+SIZE:  90 observations, 10 variables
+
+DESCRIPTIVE ABSTRACT:
+Wisconsin Power and Light studied the effectiveness of two devices for
+improving the efficiency of gas home-heating systems.  The electric
+vent damper (EVD) reduces heat loss through the chimney when the
+furnace is in its off cycle by closing off the vent.  It is controlled
+electrically.  The thermally activated vent damper (TVD) is the same as
+the EVD, except that it is controlled by the thermal properties of a
+set of bimetal fins set in the vent.  Ninety test houses were used, 40
+with TVDs and 50 with EVDs.  For each house, energy consumption was
+measured for a period of several weeks with the vent damper active and
+for a period with the damper not active.  This should help show how
+effective the vent damper is in each house.
+
+Both overall weather conditions and the size of a house can greatly
+affect energy consumption.  A simple formula was used to try and adjust
+for this.  Average energy consumed by the house during on period was
+recorded as (consumption)/[(weather)(house area)], where consumption is
+total energy consumption for the period, measured in BTUs, weather is
+measured in number of degree days, and house area is measured in square
+feet.  In addition, various characteristics of the house , chimney, and
+furnace were recorded for each house.  A few observations were missing
+and recorded as NA.
+
+SOURCES:
+  Ryan, B.F. and Joiner, B.L. Minitab Handbook, 3rd edition.  Page A-4.
+
+VARIABLE DESCRIPTIONS:
+
+ 1. Type: Type of furnace (1 = forced air, 2 = gravity, 3 = forced water)
+ 2. CHArea: Chimney area
+ 3. CHShape: Chimney shape (1 = round, 2 = square, 3 = rectangular)
+ 4. CHHeight: Chimney height
+ 5. CHLiner: Type of chimney liner (0 = unlined, 1 = tile, 2 = metal)
+ 6. House: Type of house (1 = ranch, 2 = two-story, 3 = tri-level, 
+	   4 = bi-level, 5 = one and one-half stories)
+ 7. Age: House age in years (99 means 99 or more years)
+ 8. BTUIn: Average energy consumption with vent damper active
+ 9. BTUOut: Average energy consumption with vent damper inactive
+10. Damper: Type of damper (1 = EVD, 2 = TVD)
+

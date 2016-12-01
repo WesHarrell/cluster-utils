@@ -1,0 +1,176 @@
+> # ANALYSIS OF FURNACE DATA (see furnace_desc.txt for motivation)
+> 
+> 
+> pdf("furnace_R_out.pdf") # create graphical output file
+> 
+> furnace0 <- read.delim("furnace.txt",header=TRUE)
+> 
+> furnace <- subset(furnace0,select = c(CHArea,CHHght,Age,BTUIn, BTUOut,Damper))
+> head(furnace,25)     # just one missing datapoint (CHArea in line 24)
+   CHArea CHHght Age BTUIn BTUOut Damper
+1      28     20   8  7.87   8.25      1
+2     144     26  75  9.43   9.66      1
+3      80     30  44  7.16   8.33      1
+4     100     24  75  8.67   8.82      1
+5     168     35  30 12.31  12.06      1
+6      28     17   4  9.84   9.67      1
+7      64     24  45 16.90  17.51      1
+8      64     18  16 10.04  10.79      1
+9      96     25  45 12.62  13.59      1
+10    108     27  40  7.62   7.99      1
+11     64     16  22 11.12  12.64      1
+12     63     30  40 13.43  14.42      1
+13     42     15  13  9.07   9.25      1
+14    117     25  99  6.94   7.79      1
+15     64     18  19 10.28  11.29      1
+16     28     17  30  9.37  10.26      1
+17     64     28  60  7.93   9.46      1
+18     64     19  30 13.96  14.77      1
+19     28     26  10  6.80   7.21      1
+20     80     27  60  4.00   4.29      1
+21     28     14  24  8.58   9.81      1
+22     28     23  70  8.00   8.41      1
+23     64     17  12  5.98   6.78      1
+24    NaN     30  60 15.24  16.30      1
+25     64     27  40  8.54   9.01      1
+> 
+> furnace$Damper <- factor(furnace$Damper,levels=1:2)  # reinterpret "Damper" as factor variable
+> is(furnace$Damper)[1]                                # 'is' identifies variable type
+[1] "factor"
+> 
+> names(furnace)       # names of all variables in dataframe...
+[1] "CHArea" "CHHght" "Age"    "BTUIn"  "BTUOut" "Damper"
+> str(furnace)         # ...more structural information...
+'data.frame':	90 obs. of  6 variables:
+ $ CHArea: num  28 144 80 100 168 28 64 64 96 108 ...
+ $ CHHght: int  20 26 30 24 35 17 24 18 25 27 ...
+ $ Age   : int  8 75 44 75 30 4 45 16 45 40 ...
+ $ BTUIn : num  7.87 9.43 7.16 8.67 12.31 ...
+ $ BTUOut: num  8.25 9.66 8.33 8.82 12.06 ...
+ $ Damper: Factor w/ 2 levels "1","2": 1 1 1 1 1 1 1 1 1 1 ...
+> summary(furnace)     # ...and associated summary statistics
+     CHArea           CHHght           Age            BTUIn       
+ Min.   : 28.00   Min.   :14.00   Min.   : 1.00   Min.   : 2.970  
+ 1st Qu.: 28.00   1st Qu.:17.00   1st Qu.:12.00   1st Qu.: 7.947  
+ Median : 64.00   Median :20.00   Median :30.00   Median : 9.835  
+ Mean   : 62.56   Mean   :21.97   Mean   :38.57   Mean   :10.038  
+ 3rd Qu.: 80.00   3rd Qu.:27.00   3rd Qu.:60.00   3rd Qu.:12.045  
+ Max.   :168.00   Max.   :39.00   Max.   :99.00   Max.   :18.260  
+ NA's   :1                                                        
+     BTUOut       Damper
+ Min.   : 3.200   1:40  
+ 1st Qu.: 8.707   2:50  
+ Median :10.740         
+ Mean   :10.813         
+ 3rd Qu.:12.797         
+ Max.   :20.550         
+                        
+> 
+> attach(furnace)
+> 
+> mean(CHArea,na.rm=TRUE) # NaN arises if option is undeclared
+[1] 62.5618
+> 
+> sd(CHArea,na.rm=TRUE)   # (curiously not given by 'summary'!)
+[1] 32.53074
+> 
+> 
+> # BTU scatterplot, stratified by damper type
+> 
+> {
++ plot(BTUOut[Damper==1]~BTUIn[Damper==1],
++      xlab="BTUIn",ylab="BTUOut",xaxt="n",yaxt="n",
++      main="BTUIn vs BTUOut for Stratified Furnace Data",
++      xlim=c(2,20),ylim=c(2,22),col="blue",pch=1)
++ points(BTUOut[Damper==2]~BTUIn[Damper==2],col="red",pch=4) 
++ axis(1,at=seq(2,20,2))
++ axis(2,at=seq(2,22,2))
++ legend(15,8,c('EVD','TVD'),pch=c(1,4),col=c("blue","red"))
++ }
+> 
+> 
+> # BTUIn histogram & 90% parameter confidence intervals
+> 
+> {
++ hist(BTUIn, freq=TRUE, border="darkblue",xaxt="n",
++      main="BTUIn Histogram & Normal Fit",
++      xlim=c(2,20),ylim=c(0,30),plot=TRUE)
++ axis(1,at=seq(2,20,2))
++ curve(180*dnorm(x,mean(BTUIn),sd(BTUIn)),
++      from=0,to=20,add=TRUE,col="green",lwd=2)
++ }
+> 
+> count <- function(x) sum(!is.na(x))
+> N <- count(BTUIn)
+> M <- mean(BTUIn)
+> S <- sd(BTUIn)
+> 
+> A <- M+S*qt(0.05,N-1)/sqrt(N)   # qt returns specified %-tiles of
+> B <- M+S*qt(0.95,N-1)/sqrt(N)   # Student t distribution, N-1 dof
+> cat('90 pct CI about BTUIn mean:', A, M, B, '\n')
+90 pct CI about BTUIn mean: 9.535954 10.03844 10.54094 
+> 
+> A <- S*sqrt((N-1)/qchisq(0.95,N-1))  # qchisq returns specified
+> B <- S*sqrt((N-1)/qchisq(0.05,N-1))  # %-tiles of Chi square dist
+> cat('90 pct CI about BTUIn stdv:', A, S, B, '\n')
+90 pct CI about BTUIn stdv: 2.556354 2.86799 3.275093 
+> 
+> 
+> # Simple linear regression
+> 
+> lm(BTUOut~BTUIn)  # very brief output!
+
+Call:
+lm(formula = BTUOut ~ BTUIn)
+
+Coefficients:
+(Intercept)        BTUIn  
+     0.2074       1.0565  
+
+> 
+> btu <- lm(BTUOut~BTUIn)   # give the linear model object a name
+> summary(btu)   # R^2 (square of correlation coefficient)
+
+Call:
+lm(formula = BTUOut ~ BTUIn)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.7945 -0.2634 -0.0418  0.2495  3.3606 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.20742    0.23177   0.895    0.373    
+BTUIn        1.05651    0.02221  47.571   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.6009 on 88 degrees of freedom
+Multiple R-squared:  0.9626,	Adjusted R-squared:  0.9621 
+F-statistic:  2263 on 1 and 88 DF,  p-value: < 2.2e-16
+
+> 
+> {
++ plot(BTUOut~BTUIn,
++      xlab="BTUIn",ylab="BTUOut",
++      main="BTUIn vs BTUOut and Least Squares Regression Line",
++      xlim=c(2,20),ylim=c(2,22),col="plum",pch=5)
++ abline(btu, col="powderblue", lwd=2)
++ FIT <- fitted(btu)        # y-values we expect for observed 
++                           # x-values,given the linear fit
++ segments(BTUIn,FIT,BTUIn,BTUOut)   # (x1,y1,x2,y2)
++ }
+> 
+> 
+> # Regression diagnostic plots
+> {
++ par(mfrow=c(3,2),mex=0.5) # establish 3x2 layout, compressed margin
++ plot(btu,which=1:6)       # Cook's distance: measure of influence of
++ }                         # each obs on the regression coefficients
+> 
+> par(mfrow=c(1,1),mex=1)   # reset
+>  
+> dev.off() # close the file 
+null device 
+          1 
+> 

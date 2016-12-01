@@ -1,0 +1,139 @@
+                                                           The SAS System                        08:02 Monday, November 28, 2016   1
+
+                Obs          CHArea          CHHght             Age           BTUIn          BTUOut          Damper
+
+                  1              28              20               8            7.87            8.25               1
+                  2             144              26              75            9.43            9.66               1
+                  3              80              30              44            7.16            8.33               1
+                  4             100              24              75            8.67            8.82               1
+                  5             168              35              30           12.31           12.06               1
+                  6              28              17               4            9.84            9.67               1
+                  7              64              24              45            16.9           17.51               1
+                  8              64              18              16           10.04           10.79               1
+                  9              96              25              45           12.62           13.59               1
+                 10             108              27              40            7.62            7.99               1
+                 11              64              16              22           11.12           12.64               1
+                 12              63              30              40           13.43           14.42               1
+                 13              42              15              13            9.07            9.25               1
+                 14             117              25              99            6.94            7.79               1
+                 15              64              18              19           10.28           11.29               1
+                 16              28              17              30            9.37           10.26               1
+                 17              64              28              60            7.93            9.46               1
+                 18              64              19              30           13.96           14.77               1
+                 19              28              26              10             6.8            7.21               1
+                 20              80              27              60               4            4.29               1
+                 21              28              14              24            8.58            9.81               1
+                 22              28              23              70               8            8.41               1
+                 23              64              17              12            5.98            6.78               1
+                 24               .              30              60           15.24            16.3               1
+                 25              64              27              40            8.54            9.01               1
+                                                           The SAS System                        08:02 Monday, November 28, 2016   2
+
+                                                       The CONTENTS Procedure
+
+               Data Set Name        WORK.FURNACE                                             Observations          90
+               Member Type          DATA                                                     Variables             6 
+               Engine               V9                                                       Indexes               0 
+               Created              11/28/2016 08:02:41                                      Observation Length    48
+               Last Modified        11/28/2016 08:02:41                                      Deleted Observations  0 
+               Protection                                                                    Compressed            NO
+               Data Set Type                                                                 Sorted                NO
+               Label                                                                                                 
+               Data Representation  SOLARIS_X86_64, LINUX_X86_64, ALPHA_TRU64, LINUX_IA64                            
+               Encoding             latin1  Western (ISO)                                                            
+
+
+                                                 Engine/Host Dependent Information
+
+                    Data Set Page Size          65536                                                          
+                    Number of Data Set Pages    1                                                              
+                    First Data Page             1                                                              
+                    Max Obs per Page            1360                                                           
+                    Obs in First Data Page      90                                                             
+                    Number of Data Set Repairs  0                                                              
+                    Filename                    /nobackup1/sfinch/SAS_workDC450000BA99_node142/furnace.sas7bdat
+                    Release Created             9.0401M3                                                       
+                    Host Created                Linux                                                          
+                    Inode Number                1.4411553E17                                                   
+                    Access Permission           rw-rw-r--                                                      
+                    Owner Name                  sfinch                                                         
+                    File Size                   128KB                                                          
+                    File Size (bytes)           131072                                                         
+
+
+                                                    Variables in Creation Order
+ 
+                                        #    Variable    Type    Len    Format     Informat
+
+                                        1    CHArea      Num       8    BEST12.    BEST32. 
+                                        2    CHHght      Num       8    BEST12.    BEST32. 
+                                        3    Age         Num       8    BEST12.    BEST32. 
+                                        4    BTUIn       Num       8    BEST12.    BEST32. 
+                                        5    BTUOut      Num       8    BEST12.    BEST32. 
+                                        6    Damper      Num       8    BEST12.    BEST32. 
+                                                           The SAS System                        08:02 Monday, November 28, 2016   3
+
+                                                        The MEANS Procedure
+
+                                     Lower                                           Upper                                       N
+  Variable         Minimum        Quartile          Median            Mean        Quartile         Maximum         Std Dev    Miss
+  --------------------------------------------------------------------------------------------------------------------------------
+  CHArea             28.00           28.00           64.00           62.56           80.00          168.00           32.53       1
+  CHHght             14.00           17.00           20.00           21.97           27.00           39.00            5.93       0
+  Age                 1.00           12.00           30.00           38.57           60.00           99.00           31.09       0
+  BTUIn               2.97            7.93            9.84           10.04           12.16           18.26            2.87       0
+  BTUOut              3.20            8.67           10.74           10.81           12.85           20.55            3.09       0
+  --------------------------------------------------------------------------------------------------------------------------------
+                                                           The SAS System                        08:02 Monday, November 28, 2016   4
+
+                                                         The FREQ Procedure
+
+                                                                       Cumulative    Cumulative
+                                    Damper    Frequency     Percent     Frequency      Percent
+                                    -----------------------------------------------------------
+                                    1               40       44.44            40        44.44  
+                                    2               50       55.56            90       100.00  
+                                                        Confidence Intervals                     08:02 Monday, November 28, 2016   5
+
+                                                      The UNIVARIATE Procedure
+                                                          Variable:  BTUIn
+
+                                            Basic Confidence Limits Assuming Normality
+ 
+                                       Parameter          Estimate     90% Confidence Limits
+
+                                       Mean               10.03844       9.53595    10.54094
+                                       Std Deviation       2.86799       2.55635     3.27509
+                                       Variance            8.22537       6.53495    10.72623
+                                         BTUIn vs BTUOut and Least Squares Regression Line       08:02 Monday, November 28, 2016   6
+
+                                                         The REG Procedure
+                                                           Model: MODEL1
+                                                    Dependent Variable: BTUOut 
+
+                                              Number of Observations Read          90
+                                              Number of Observations Used          90
+
+
+                                                        Analysis of Variance
+ 
+                                                               Sum of           Mean
+                           Source                   DF        Squares         Square    F Value    Pr > F
+
+                           Model                     1      817.12924      817.12924    2262.95    <.0001
+                           Error                    88       31.77589        0.36109                     
+                           Corrected Total          89      848.90513                                    
+
+
+                                        Root MSE              0.60091    R-Square     0.9626
+                                        Dependent Mean       10.81311    Adj R-Sq     0.9621
+                                        Coeff Var             5.55721                       
+
+
+                                                        Parameter Estimates
+ 
+                                                     Parameter       Standard
+                                Variable     DF       Estimate          Error    t Value    Pr > |t|
+
+                                Intercept     1        0.20742        0.23177       0.89      0.3733
+                                BTUIn         1        1.05651        0.02221      47.57      <.0001

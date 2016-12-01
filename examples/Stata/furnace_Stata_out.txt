@@ -1,0 +1,232 @@
+
+  ___  ____  ____  ____  ____ (R)
+ /__    /   ____/   /   ____/
+___/   /   /___/   /   /___/   14.1   Copyright 1985-2015 StataCorp LP
+  Statistics/Data Analysis            StataCorp
+                                      4905 Lakeway Drive
+     Special Edition                  College Station, Texas 77845 USA
+                                      800-STATA-PC        http://www.stata.com
+                                      979-696-4600        stata@stata.com
+                                      979-696-4601 (fax)
+
+60-user Stata network license expires  9 Aug 2017:
+       Serial number:  401409224046
+         Licensed to:  Massachusetts Institute of Technology
+                       Cambridge
+
+Notes:
+      1.  Stata is running in batch mode.
+      2.  Unicode is supported; see help unicode_advice.
+      3.  Maximum number of variables is set to 5000; see help set_maxvar.
+
+. log using "furnace_Stata_out.smcl"
+-------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /home/sfinch/furnace_Stata_out.smcl
+  log type:  smcl
+ opened on:   1 Sep 2016, 12:59:26
+
+. 
+. import delimited Type CHArea CHShape CHHght CHLiner House Age BTUIn BTUOut Da
+> mper using "furnace.csv"
+(10 vars, 90 obs)
+
+. 
+. keep CHArea CHHght Age BTUIn BTUOut Damper
+
+. 
+. list in 1/25, separator(0)
+
+     +-------------------------------------------------+
+     | CHArea   CHHght   Age   BTUIn   BTUOut   Damper |
+     |-------------------------------------------------|
+  1. |     28       20     8    7.87     8.25        1 |
+  2. |    144       26    75    9.43     9.66        1 |
+  3. |     80       30    44    7.16     8.33        1 |
+  4. |    100       24    75    8.67     8.82        1 |
+  5. |    168       35    30   12.31    12.06        1 |
+  6. |     28       17     4    9.84     9.67        1 |
+  7. |     64       24    45    16.9    17.51        1 |
+  8. |     64       18    16   10.04    10.79        1 |
+  9. |     96       25    45   12.62    13.59        1 |
+ 10. |    108       27    40    7.62     7.99        1 |
+ 11. |     64       16    22   11.12    12.64        1 |
+ 12. |     63       30    40   13.43    14.42        1 |
+ 13. |     42       15    13    9.07     9.25        1 |
+ 14. |    117       25    99    6.94     7.79        1 |
+ 15. |     64       18    19   10.28    11.29        1 |
+ 16. |     28       17    30    9.37    10.26        1 |
+ 17. |     64       28    60    7.93     9.46        1 |
+ 18. |     64       19    30   13.96    14.77        1 |
+ 19. |     28       26    10     6.8     7.21        1 |
+ 20. |     80       27    60       4     4.29        1 |
+ 21. |     28       14    24    8.58     9.81        1 |
+ 22. |     28       23    70       8     8.41        1 |
+ 23. |     64       17    12    5.98     6.78        1 |
+ 24. |      .       30    60   15.24     16.3        1 |
+ 25. |     64       27    40    8.54     9.01        1 |
+     +-------------------------------------------------+
+
+. 
+. summarize CHArea CHHght Age BTUIn BTUOut
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+      CHArea |         89     62.5618    32.53074         28        168
+      CHHght |         90    21.96667    5.925473         14         39
+         Age |         90    38.56667    31.09321          1         99
+       BTUIn |         90    10.03844     2.86799       2.97      18.26
+      BTUOut |         90    10.81311    3.088407        3.2      20.55
+
+. 
+. * type "findit univar" and search for "sg67_1" 
+
+. 
+. quietly net from http://www.stata.com/stb/stb51/
+
+. quietly net install sg67_1.pkg 
+
+. 
+. univar CHArea CHHght Age BTUIn BTUOut
+                                        -------------- Quantiles --------------
+Variable       n     Mean     S.D.      Min      .25      Mdn      .75      Max
+-------------------------------------------------------------------------------
+  CHArea      89    62.56    32.53    28.00    28.00    64.00    80.00   168.00
+  CHHght      90    21.97     5.93    14.00    17.00    20.00    27.00    39.00
+     Age      90    38.57    31.09     1.00    12.00    30.00    60.00    99.00
+   BTUIn      90    10.04     2.87     2.97     7.93     9.84    12.16    18.26
+  BTUOut      90    10.81     3.09     3.20     8.67    10.74    12.85    20.55
+-------------------------------------------------------------------------------
+
+. 
+. tabulate Damper
+
+     Damper |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         40       44.44       44.44
+          2 |         50       55.56      100.00
+------------+-----------------------------------
+      Total |         90      100.00
+
+. 
+. graph twoway (scatter BTUOut BTUIn if Damper==1, msymbol(Oh) mcolor(blue)) (s
+> catter BTUOut BTUIn if Damper==2, msymbol(X) mcolor(red)), title (BTUIn vs BT
+> UOut for Stratified Furnace Data) legend (label(1 EVD) label(2 TVD)) saving("
+> fs1.gph",replace)
+(note: file fs1.gph not found)
+(file fs1.gph saved)
+
+. graph export "fs1.pdf" 
+(file fs1.pdf written in PDF format)
+
+. 
+. histogram(BTUIn), frequency normal title (BTUIn Histogram & Normal Fit) savin
+> g("fs2.gph",replace) 
+(bin=9, start=2.97, width=1.6988889)
+(note: file fs2.gph not found)
+(file fs2.gph saved)
+
+. graph export "fs2.pdf"
+(file fs2.pdf written in PDF format)
+
+. 
+. ci means BTUIn, level(90)
+
+    Variable |        Obs        Mean    Std. Err.       [90% Conf. Interval]
+-------------+---------------------------------------------------------------
+       BTUIn |         90    10.03844    .3023127        9.535954    10.54094
+
+. 
+. ci variances BTUIn, level(90) sd
+
+    Variable |        Obs      Std. Dev.      [90% Conf. Interval]
+-------------+----------------------------------------------------
+       BTUIn |         90       2.86799       2.556354    3.275093
+
+. 
+. regress BTUOut BTUIn
+
+      Source |       SS           df       MS      Number of obs   =        90
+-------------+----------------------------------   F(1, 88)        =   2262.95
+       Model |  817.129201         1  817.129201   Prob > F        =    0.0000
+    Residual |  31.7758892        88   .36108965   R-squared       =    0.9626
+-------------+----------------------------------   Adj R-squared   =    0.9621
+       Total |   848.90509        89  9.53825944   Root MSE        =    .60091
+
+------------------------------------------------------------------------------
+      BTUOut |      Coef.   Std. Err.      t    P>|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       BTUIn |   1.056508   .0222093    47.57   0.000     1.012371    1.100644
+       _cons |   .2074168   .2317701     0.89   0.373    -.2531776    .6680112
+------------------------------------------------------------------------------
+
+. 
+. graph twoway (lfitci BTUOut BTUIn, ciplot(rline)) (scatter BTUOut BTUIn, msym
+> bol(d) mcolor(orange)), saving("fs3.gph",replace) 
+(note: file fs3.gph not found)
+(file fs3.gph saved)
+
+. graph export "fs3.pdf"
+(file fs3.pdf written in PDF format)
+
+. 
+. predict resids, residuals
+
+. 
+. predict std_resids, rstandard 
+
+. 
+. predict cooks_D, cooksd
+
+. 
+. predict fit_values
+(option xb assumed; fitted values)
+
+. 
+. label var fit_values "Fitted values"
+
+. 
+. rvfplot, yline(0) title("Residuals vs Fitted") name(fs4)
+
+. 
+. qnorm std_resids, title("Normal Q-Q") name(fs5)
+
+. 
+. quietly net from http://www.stata-journal.com/software/sj10-1/
+
+. quietly net install gr0009_1.pkg
+
+. 
+. rvfplot2, rstandard rscale(sqrt(abs(X))) lowess title("Scale-Location")  name
+> (fs6)
+
+. 
+. generate index = _n
+
+. 
+. label var index "Observation number"
+
+. 
+. label var cooks_D "Cook's distance"
+
+. 
+. graph twoway scatter cooks_D index, msymbol(none) mlabel(index) mlabposition(
+> 0) title("Cook's Distance") name(fs7)
+
+. 
+. graph combine fs4 fs5 fs6 fs7, saving("fs0.gph",replace) 
+(note: file fs0.gph not found)
+(file fs0.gph saved)
+
+. graph export "fs0.pdf"
+(file fs0.pdf written in PDF format)
+
+. 
+. log close
+      name:  <unnamed>
+       log:  /home/sfinch/furnace_Stata_out.smcl
+  log type:  smcl
+ closed on:   1 Sep 2016, 12:59:45
+-------------------------------------------------------------------------------
+
+. 
