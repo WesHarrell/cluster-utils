@@ -18,6 +18,8 @@ for x in range(2,len(lines)-1):
 	lsplit = lines[x].replace(':',' ').split()
 	fsname = lsplit[1] + '/' + luser
 	q = lines[x].strip().split()
-	print('{0:>30}  {1:10.2f}  {2:10.2f} {3:10.2%}'.format(fsname,float(q[1])/(1024**2), float(q[2])/(1024**2),float(q[1])/float(q[2])))
+	q1 = q[1].translate(None, '*')
+	q2 = q[2].translate(None, '*')
+	print('{0:>30}  {1:10.2f}  {2:10.2f} {3:10.2%}'.format(fsname,float(q1)/(1024**2), float(q2)/(1024**2),float(q1)/float(q2)))
 #
 print ""
