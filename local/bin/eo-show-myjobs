@@ -9,12 +9,15 @@
 #-m my partitions (default) based on groups membership
 RED='\033[0;31m'
 NC='\033[0m'
-printf "${RED}SLOAN BATCH PARTITION QUEUE${NC}\n"
+printf "${RED}MY JOBS ON SLOAN BATCH PARTITION QUEUE${NC}\n"
 squeue -u $USER -p sched_mit_sloan
 echo ""
 if [[ `groups` =~ .*sched_mit_thesmar* ]]; then
-  printf "${RED}DAVID THESMAR GPU PARTITION QUEUE${NC}\n"
+  printf "${RED}MY JOBS ON DAVID THESMAR GPU PARTITION QUEUE${NC}\n"
   squeue -u $USER -p sched_mit_thesmar
 fi
+printf "${RED}MY JOBS ON OTHER PARTITIONS${NC}\n"
+squeue -u $USER -p newnodes
+squeue -u $USER -p sched_any_quicktest
 echo ""
 exit 0
