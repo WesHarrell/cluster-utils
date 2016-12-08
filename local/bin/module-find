@@ -5,8 +5,8 @@
 
 if [ $# -lt 1 ]; then
   echo ""
-  echo "Usage: module-find <string>"
-  echo "   Eg: module-find matlab"
+  echo "Usage: eo-module-find <string>"
+  echo "   Eg: eo-module-find matlab"
   echo ""
   exit 1
 fi

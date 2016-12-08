@@ -3,7 +3,7 @@
 import os
 import subprocess
 
-luser = os.getlogin()
+luser = os.getenv('USER')
 
 p = subprocess.Popen(['quota','-w'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
