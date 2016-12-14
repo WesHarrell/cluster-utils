@@ -26,4 +26,5 @@ pip2.7 install jupyter-core --target=/home/software/sloan/local/lib/py27 --upgra
 pip2.7 install Scrapy --target=/home/software/sloan/local/lib/py27 --upgrade
 pip2.7 install networkx --target=/home/software/sloan/local/lib/py27 --upgrade
 pip2.7 install tensorflow --target=/home/software/sloan/local/lib/py27 --upgrade
+pip2.7 install selenium --target=/home/software/sloan/local/lib/py27 --upgrade
 
