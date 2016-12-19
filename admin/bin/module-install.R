@@ -21,6 +21,10 @@ sapply(plist,function(x){try(install.packages(x,lib="/home/software/sloan/local/
 # Get updated modules
 ulist <- old.packages(lib.loc = "/home/software/sloan/local/lib/R/el6")
 sapply(ulist,function(x){try(install.packages(x,lib="/home/software/sloan/local/lib/R/el6"))})
+#
+# Add useful tools from non-CRAN repo
+library("devtools")
+devtools::install_github("hadley/multidplyr", lib="/home/software/sloan/local/lib/R/el6")
 
 ##
 ## Omegahat repo
