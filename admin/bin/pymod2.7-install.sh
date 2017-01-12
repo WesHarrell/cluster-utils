@@ -5,7 +5,7 @@
 export CFLAGS="-I/home/software/sloan/local/lib/libffi-3.2.1/include -L/home/software/sloan/local/lib64"
 #
 #module load engaging/python/2.7.11
-#module load sloan/py27-modules
+#module load sloan/python/2.7-modules
 #
 pip2.7 install numpy --target=/home/software/sloan/local/lib/py27 --upgrade
 pip2.7 install pandas --target=/home/software/sloan/local/lib/py27 --upgrade
@@ -27,4 +27,5 @@ pip2.7 install Scrapy --target=/home/software/sloan/local/lib/py27 --upgrade
 pip2.7 install networkx --target=/home/software/sloan/local/lib/py27 --upgrade
 pip2.7 install tensorflow --target=/home/software/sloan/local/lib/py27 --upgrade
 pip2.7 install selenium --target=/home/software/sloan/local/lib/py27 --upgrade
+pip2.7 install boto3 --target=/home/software/sloan/local/lib/py27 --upgrade
 
