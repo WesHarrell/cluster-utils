@@ -1,0 +1,24 @@
+#!/bin/bash
+
+cat << EOF
+
+For information about research computing at Sloan, including this system:
+https://mysloan.mit.edu/offices/sts/rsrchcomp/Pages/default.aspx
+
+For general questions or assistance send mail to stshelp@mit.edu
+
+List of helpful commands for Sloan eo users:
+
+eo-module-find:     Show applications matching a string, for example eo-module-find stata
+eo-show-quota:      Prints current storage quota and usage
+eo-show-partition:  Prints a list of available partitions and the availability of compute nodes
+eo-show-alljobs:    Prints a list of all Sloan user jobs
+eo-show-myjobs:     Prints a list of your running or pending jobs
+eo-show-users:      Prints a list of Sloan users (kerberos username) with engaging accounts
+eo-help:            Prints this help information
+
+You can use TAB completion to help you recall these commands, TAB completioin uses the TAB key to help
+complete the command or path for example type eo-<TAB><TAB> and you will see the list of commands beginning 
+with eo-  You can also use this to complete path or file names.
+
+EOF
