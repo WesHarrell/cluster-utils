@@ -1,0 +1,9 @@
+#%Modules
+#
+
+module-whatis "Adds PYTHONPATH to a number of pre-compiled python modules for version 2.7 with UCS4"
+
+prereq engaging/python/2.7.10+ucs4 
+
+prepend-path PYTHONPATH /home/software/sloan/local/lib/py27-ucs4
+
