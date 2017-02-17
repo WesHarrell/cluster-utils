@@ -1,0 +1,26 @@
+#!/bin/bash
+# script to create links to shared project spaces
+PROJHOME=/nfs/sloanlab001/projects
+
+#make sure projects space and links exist, if not, create
+[ ! -d $HOME/projects ] && mkdir $HOME/projects
+grplist=`groups | grep _proj`
+if [[ $? -ne 0 ]]; then
+  echo ""
+  echo "No shared project folder(s) found. If this is an error or you want to setup a"
+  echo "shared project space, please contact stshelp@mit.edu"
+  echo ""
+  exit 1
+fi
+for gr in `echo $grplist`; do
+  if [[ $gr =~ .*_proj && -d $PROJHOME/$gr ]]; then
+    [ ! -L $HOME/projects/$gr ] && ln -s $PROJHOME/$gr $HOME/projects/$gr
+  fi
+done
+
+echo""
+echo 'Links to shared folders created in the "projects" directory of your home'
+echo ""
+
+exit 0
+
