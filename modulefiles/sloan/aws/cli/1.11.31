@@ -3,7 +3,7 @@
 
 module-whatis "Adds the Amazon Web Service (AWS) Command Line Interface (CLI) to your environment"
 
-prereq engaging/python/2.7.11 
+prereq engaging/python/2.7.12 
 prereq sloan/python/2.7-modules
 
 prepend-path PATH /home/software/sloan/aws/bin

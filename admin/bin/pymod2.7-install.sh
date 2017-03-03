@@ -4,8 +4,11 @@
 # CFLAGS required to build some modules, eg cffi, which is a requirement for scrapy
 export CFLAGS="-I/home/software/sloan/local/lib/libffi-3.2.1/include -L/home/software/sloan/local/lib64"
 #
-#module load engaging/python/2.7.12
-#module load sloan/python/2.7-modules
+module load engaging/python/2.7.12
+module load sloan/python/2.7-modules
+module load engaging/unixODBC
+module load sloan/freetds/0.95.95
+
 #
 pip2.7 install numpy --target=/home/software/sloan/local/lib/py27 --upgrade
 pip2.7 install pandas --target=/home/software/sloan/local/lib/py27 --upgrade
@@ -28,4 +31,7 @@ pip2.7 install networkx --target=/home/software/sloan/local/lib/py27 --upgrade
 pip2.7 install selenium --target=/home/software/sloan/local/lib/py27 --upgrade
 pip2.7 install boto3 --target=/home/software/sloan/local/lib/py27 --upgrade
 pip2.7 install google --target=/home/software/sloan/local/lib/py27 --upgrade
+pip2.7 install pyodbc --target=/home/software/sloan/local/lib/py27 --upgrade
+pip2.7 install pymssql --target=/home/software/sloan/local/lib/py27 --upgrade
+pip2.7 install PyMySQL --target=/home/software/sloan/local/lib/py27 --upgrade
 
