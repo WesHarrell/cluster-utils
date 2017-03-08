@@ -18,6 +18,8 @@ for gr in `echo $grplist`; do
     find $PROJHOME/$gr -user $USER -type d -exec chmod g+ws {} \;
   fi
 done
+#fix pool
+chmod -f 700 /pool001/$USER
 
 echo""
 echo "File and folder permissions fixed on files owned by you.  To"
