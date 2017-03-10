@@ -11,7 +11,7 @@ out,err = p.communicate()
 
 lines = [b.strip() for b in out.split('\n')]
 
-print('\n\033[31m{0:>70}\033[0m'.format('User home, storage pool and shared project quotas'))
+print('\n\033[31m{0:>10}\033[0m'.format('Quotas for home, storage pool and shared project spaces'))
 print('\n\033[1m{0:>30}  {1:10}  {2:10}  {3:10}\033[0m'.format('Storage','Usage (GB)','Quota (GB)','   % Used'))
 
 #get user quotas
@@ -22,6 +22,7 @@ for x in range(2,len(lines)-1):
 	q1 = q[1].translate(None, '*')
 	q2 = q[2].translate(None, '*')
 	print('{0:>30}  {1:10.2f}  {2:10.2f} {3:10.2%}'.format(fsname,float(q1)/(1024**2), float(q2)/(1024**2),float(q1)/float(q2)))
+
 #
 #get project groups from quota logfile which is processed from cronjob on eofe-data008
 #
@@ -34,6 +35,8 @@ for line in qfile:
     if gr in line:
       proj,used,quota = line.split()
       print('{0:>30}  {1:10.2f}  {2:10.2f} {3:10.2%}'.format('~/projects/' + proj,float(used)/(1024**2), float(quota)/(1024**2),float(used)/float(quota)))
+print ""
+print('\n\033[1mNOTE: \033[0mIf your quota looks incorrect run eo-fix-permissions, wait a few minutes and try again')
 print ""
 #
 #show lustre fs
@@ -48,11 +51,10 @@ used = lf[2]
 rem = lf[3]
 per = lf[4]
 
-print('\n\033[31m{0:>70}\033[0m'.format('Lustre parallel filesystem (no quota, temp space only)'))
-print('\n\033[1m{0:>30}  {1:10}  {2:10} {3:10} {4:10}\033[0m'.format('Path','Total','Used','Remaining','% Used'))
-print('{0:>30}  {1:10}  {2:10} {3:10} {4:10}'.format('/nobackup1/' + luser, tot + 'B',used + 'B',rem + 'B',per))
+print('\n\033[31m{0:>70}\033[0m'.format('Lustre parallel filesystem (Shared temp space, NO QUOTA, below is what is used and available to all users)'))
+print('\n\033[1m{0:>20}  {1:10}  {2:10} {3:10} {4:10}\033[0m'.format('Path','Total','Used','Remaining','% Used'))
+print('{0:>20}  {1:10}  {2:10} {3:10} {4:10}'.format('/nobackup1', tot + 'B',used + 'B',rem + 'B',per))
 
-print('\n\033[1mNOTE: \033[0mIf your quota looks incorrect run eo-fix-permissions, wait a few minutes and try again')
 
 
 print ""
