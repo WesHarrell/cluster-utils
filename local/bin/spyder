@@ -2,7 +2,7 @@
 #
 #wrapper for starting spyder
 #
-module load engaging/python/2.7.11
+module load engaging/python/2.7.12
 module load sloan/python/2.7-modules
 
 python /home/software/sloan/local/lib/py27/spyderlib/spyder.py >& /dev/null
