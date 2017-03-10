@@ -23,8 +23,9 @@ chmod -f 700 /pool001/$USER
 
 echo""
 echo "File and folder permissions fixed on files owned by you.  To"
-echo "ensure all files are correct please ask your project colleagues"
-echo "to run the eo-fix-permissions command"
+echo "ensure all files in your shared project space are correct please"
+echo "ask your project colleagues to run the eo-fix-permissions command"
+
 echo""
 
 exit 0
