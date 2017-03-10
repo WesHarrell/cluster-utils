@@ -52,7 +52,7 @@ rem = lf[3]
 per = lf[4]
 
 print('\n\033[31m{0:>70}\033[0m'.format('Lustre parallel filesystem (Shared temp space, NO QUOTA, below is what is used and available to all users)'))
-print('\n\033[1m{0:>20}  {1:10}  {2:10} {3:10} {4:10}\033[0m'.format('Path','Total','Used','Remaining','% Used'))
+print('\n\033[1m{0:>20}  {1:10}  {2:10} {3:10} {4:10}\033[0m'.format('Path','Total','Used','Available','% Used'))
 print('{0:>20}  {1:10}  {2:10} {3:10} {4:10}'.format('/nobackup1', tot + 'B',used + 'B',rem + 'B',per))
 
 
