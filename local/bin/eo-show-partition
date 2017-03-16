@@ -24,8 +24,6 @@ fi
 printf "${RED}GENERAL EO PARTITIONS${NC}\n"
 sinfo -p sched_any_quicktest
 echo ""
-sinfo -p sched_quadgpu_eval
-echo ""
 sinfo -p newnodes
 echo ""
 
