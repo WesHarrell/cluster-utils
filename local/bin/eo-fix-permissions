@@ -4,13 +4,6 @@ PROJHOME=/nfs/sloanlab001/projects
 
 #make sure projects space and links exist, if not, create
 grplist=`groups | grep _proj`
-if [[ $? -ne 0 ]]; then
-  echo ""
-  echo "No shared project folder(s) found. If this is an error or you want to setup a"
-  echo "shared project space, please contact stshelp@mit.edu"
-  echo ""
-  exit 1
-fi
 for gr in `echo $grplist`; do
   if [[ $gr =~ .*_proj && -d $PROJHOME/$gr ]]; then
     find $PROJHOME/$gr -user $USER -exec chgrp $gr {} \;
