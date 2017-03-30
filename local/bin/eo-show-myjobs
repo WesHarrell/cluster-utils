@@ -9,15 +9,21 @@
 #-m my partitions (default) based on groups membership
 RED='\033[0;31m'
 NC='\033[0m'
-printf "${RED}MY JOBS ON SLOAN BATCH PARTITION QUEUE${NC}\n"
-squeue -u $USER -p sched_mit_sloan
+echo -e "\033[1m             JOBID PARTITION     NAME     USER ST       TIME NODES NODELIST(REASON) \033[0m"
+printf "${RED}MY JOBS ON SLOAN BATCH PARTITION${NC}\n"
+squeue -u $USER -p sched_sloan_batch | grep -v "JOBID PARTITION"
+echo ""
+printf "${RED}MY JOBS ON SLOAN INTERACTIVE PARTITION${NC}\n"
+squeue -u $USER -p sched_mit_sloan | grep -v "JOBID PARTITION"
 echo ""
 if [[ `groups` =~ .*sched_mit_thesmar* ]]; then
-  printf "${RED}MY JOBS ON DAVID THESMAR GPU PARTITION QUEUE${NC}\n"
-  squeue -u $USER -p sched_mit_thesmar
+  printf "${RED}MY JOBS ON DAVID THESMAR GPU PARTITION${NC}\n"
+  squeue -u $USER -p sched_mit_thesmar | grep -v "JOBID PARTITION"
+  echo ""
 fi
 printf "${RED}MY JOBS ON OTHER PARTITIONS${NC}\n"
-squeue -u $USER -p newnodes
-squeue -u $USER -p sched_any_quicktest
+squeue -u $USER -p sched_any_quicktest | grep -v "JOBID PARTITION"
+squeue -u $USER -p sched_any | grep -v "JOBID PARTITION"
+squeue -u $USER -p newnodes | grep -v "JOBID PARTITION"
 echo ""
 exit 0
