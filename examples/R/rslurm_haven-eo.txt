@@ -1,0 +1,178 @@
+library(rslurm)
+library(haven)
+q05 <- function(X) quantile(X,0.05)
+q95 <- function(X) quantile(X,0.95)
+
+
+f_read <- function(k)
+  {
+  anncomp <- read_sas("/home/software/sloan/data/WRDS/comp/sasdata/execcomp/anncomp.sas7bdat")
+  subset(anncomp,select = c(YEAR, EXEC_FULLNAME, CONAME, SALARY, BONUS, GVKEY))   
+  }
+pars_f <- data.frame(k = 1:10)
+sjob_f <- slurm_apply(f_read, pars_f, jobname = "f_read", nodes = 20,
+                    slurm_options = list("cpus-per-task" = "2", "mem" = "8G"))   #BATCH JOB
+
+g_read <- function(j)
+  {
+  st1 <- "/home/software/sloan/data/WRDS/public/sasdata/macroecon/bls/"
+  nam <- c("bls","ce","cu","ei","ln","ce2","ci","cx","le","pr")
+  st2 <- ".sas7bdat"
+  dat <- list()
+  for (q in 1:10)
+    {
+    dat[[q]] <- read_sas(paste(st1,nam[q],st2, sep=""))
+    }
+  dat
+  }
+pars_g <- data.frame(j = 1:10)
+sjob_g <- slurm_apply(g_read, pars_g, jobname = "g_read", nodes = 20,
+                    slurm_options = list("cpus-per-task" = "2", "mem" = "8G"))   #BATCH JOB
+
+h_read <- function(k)
+  {
+  college <- read_sas("/home/software/sloan/data/WRDS/public/sasdata/education/college_scorecard.sas7bdat")   
+  subset(college,select = c(YEAR, UNITID, OPEID6, INSTNM, CITY, STABBR, ZIP, MENONLY, WOMENONLY, ADM_RATE))
+  }
+pars_h <- data.frame(k = 1:10)
+sjob_h <- slurm_apply(h_read, pars_h, jobname = "h_read", nodes = 20,
+                    slurm_options = list("cpus-per-task" = "2", "mem" = "8G"))   #BATCH JOB
+
+pdf("fgh_out.pdf") # create graphical output file
+
+
+# "F" JOB
+
+print_job_status(sjob_f)  # don't create AC until sjob_f is completed
+
+AC <- get_slurm_out(sjob_f, outtype = "table")
+attach(AC)
+str(AC)
+
+head(AC[YEAR==2015,], 25)
+
+NROW(SALARY[YEAR==2015])
+summary(SALARY[YEAR==2015])
+sd(SALARY[YEAR==2015]) 
+
+M <- tapply(SALARY,YEAR,mean)
+M <- cbind(M,tapply(SALARY,YEAR,q05))
+M <- cbind(M,tapply(SALARY,YEAR,q95))
+
+DF <- data.frame(min(YEAR):max(YEAR), M)
+colnames(DF) <- c('Year', 'Mean', '5%-tile', '95%-tile')
+DF.TS <- ts(DF[-1], start = min(YEAR), frequency = 1)
+DF.TS
+
+plot(DF.TS, plot.type="single", col = c("red","blue","green"), lwd=2, 
+     xlab="Year", ylab="Salary ($)", main="Times Series Plot of CEO Salaries")
+legend("topleft", colnames(DF.TS), col=c("red","blue","green"), lty=1, cex=1)
+
+detach(AC)
+
+
+# "G" JOB (in three parts)
+
+print_job_status(sjob_g)  # don't create PB until sjob_g is complete
+
+PB <- get_slurm_out(sjob_g, outtype = "raw")
+
+bls <- PB[[1]][[1]]      # part 1
+
+attach(bls)
+str(bls)
+
+count <- function(x) sum(!is.na(x)) 
+count(CES0000000001)
+# Current Employment Statistics: Thousands of employees, non-farm, seasonally adjusted 
+count(CIS1010000000000I)
+# Employment Cost Index: Total compensation, all civilian workers, seasonally adjusted 
+
+first.ces <- na.omit(CES0000000001)[1]
+min(which(CES0000000001==first.ces))
+# dataframe has 01/01/1913 - 08/31/2014 monthly data, 
+# but only recent months contain both CES & CIS (further, just one in every three)
+
+df <- data.frame(CES0000000001,CIS1010000000000I)
+na.omit(df)
+
+cor(na.omit(df))[1,2]
+
+detach(bls)
+
+
+ln <- PB[[5]][[5]]      # part 2
+str(ln)
+
+attach(ln)
+
+# LN: Labor Force Statistics from the Current Population Survey (NAICS)
+# https://download.bls.gov/pub/time.series/overview.txt
+# https://download.bls.gov/pub/time.series/ln
+# LNS10000001: Population Level - Men
+# LNS10000002: Population Level - Women	
+
+# https://beta.bls.gov/dataViewer/view/timeseries/LNS10000001
+# https://beta.bls.gov/dataViewer/view/timeseries/LNS10000002
+
+DF <- data.frame(1:NROW(LNS10000001), LNS10000001, LNS10000002)
+colnames(DF) <- c('Month', 'Men', 'Women')
+DF.TS <- ts(DF[-1], start = c(1948, 1), frequency=12)
+DF.TS
+
+plot(DF.TS, plot.type="single", col = c("plum","powderblue"), lwd=2, 
+     xlab="Year", ylab="Population (in thousands)", main="Times Series of US Population Level")
+legend("topleft", colnames(DF.TS), col=c("plum","powderblue"), lty=1, cex=1)
+
+detach(ln)
+
+
+pr <- PB[[10]][[10]]    # part 3
+str(pr)
+
+attach(pr)
+
+# PR: Major Sector Productivity and Costs Index
+# https://download.bls.gov/pub/time.series/pr
+
+# https://beta.bls.gov/dataViewer/view/timeseries/PRS84006023
+# PRS84006023: Index/Level and Work Hours : Business
+
+n <- NROW(PRS84006023)
+DF <- data.frame(237:n, PRS84006023[237:n])
+colnames(DF) <- c('Month', 'Hours')
+DF.TS <- ts(DF[-1], start = c(2006, 1), frequency=4)
+DF.TS
+
+plot(DF.TS, plot.type="single", col = c("brown"), lwd=2, 
+     xlab="Year", ylab="Average weekly hours worked", main="Times Series of US Work Hours: Business")
+legend("bottomleft", legend = c(paste("Minimum =", min(PRS84006023[237:n]))), bty = "n")
+legend("topright",   legend = c(paste("Maximum =", max(PRS84006023[237:n]))), bty = "n")
+
+detach(pr)
+
+
+# "H" JOB
+
+print_job_status(sjob_h)  # don't create SC until sjob_h is complete
+
+SC <- get_slurm_out(sjob_h, outtype = "table")  
+attach(SC)
+str(SC)              
+
+hist(YEAR,plot=FALSE)$breaks
+hist(YEAR,plot=FALSE)$counts
+
+NROW(unique(INSTNM[YEAR==2013 & MENONLY==TRUE & !is.na(MENONLY)]))
+NROW(unique(INSTNM[YEAR==2013 & WOMENONLY==TRUE & !is.na(WOMENONLY)]))
+
+unique(INSTNM[YEAR==2013 & MENONLY==TRUE & !is.na(MENONLY) & ADM_RATE<0.6 & !is.na(ADM_RATE)])
+unique(INSTNM[YEAR==2013 & WOMENONLY==TRUE & !is.na(WOMENONLY) & ADM_RATE<0.6 & !is.na(ADM_RATE)])
+
+# https://collegescorecard.ed.gov/data/
+# U.S. Department of Education College Scorecard Data
+
+detach(SC)
+
+dev.off() # close the file 
+
