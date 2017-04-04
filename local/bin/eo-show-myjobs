@@ -11,7 +11,7 @@ RED='\033[0;31m'
 NC='\033[0m'
 echo -e "\033[1m             JOBID PARTITION     NAME     USER ST       TIME NODES NODELIST(REASON) \033[0m"
 printf "${RED}MY JOBS ON SLOAN BATCH PARTITION${NC}\n"
-squeue -u $USER -p sched_sloan_batch | grep -v "JOBID PARTITION"
+squeue -u $USER -p sched_mit_sloan_batch | grep -v "JOBID PARTITION"
 echo ""
 printf "${RED}MY JOBS ON SLOAN INTERACTIVE PARTITION${NC}\n"
 squeue -u $USER -p sched_mit_sloan | grep -v "JOBID PARTITION"
