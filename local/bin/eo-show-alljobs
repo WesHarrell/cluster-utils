@@ -10,14 +10,15 @@
 RED='\033[0;31m'
 NC='\033[0m'
 printf "${RED}SLOAN BATCH PARTITION QUEUE${NC}\n"
-squeue -p sched_mit_sloan_batch
+squeue -l -p sched_mit_sloan_batch
+squeue -l -p sched_sloan_batch
 echo ""
 printf "${RED}SLOAN INTERACTIVE PARTITION QUEUE${NC}\n"
-squeue -p sched_mit_sloan
+squeue -l -p sched_mit_sloan
 echo ""
 if [[ `groups` =~ .*sched_mit_thesmar* ]]; then
   printf "${RED}DAVID THESMAR GPU PARTITION QUEUE${NC}\n"
-  squeue -p sched_mit_thesmar
+  squeue -l -p sched_mit_thesmar
 fi
 echo ""
 exit 0
