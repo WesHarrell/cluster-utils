@@ -4,7 +4,6 @@
 #SBATCH --mem=16G
 #SBATCH -p sched_mit_thesmar
 #SBATCH --time=2-12:00
-#SBATCH --contraint="centos7"
 
 module load engaging/R/3.2.5
 module load sloan/R/CRAN
@@ -19,5 +18,7 @@ module load netcdf/gcc/64/4.3.1.1
 module load harvard/centos6/cairo-1.12.14
 module load engaging/gdal/2.0.2
 module load engaging/JAGS/4.2.0
+module load sloan/texinfo
+module load sloan/texlive
 
-xvfb-run R --vanilla < module-install.R
+xvfb-run R --vanilla < ~/sloan/admin/bin/module-install.R
