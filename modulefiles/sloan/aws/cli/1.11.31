@@ -3,6 +3,8 @@
 
 module-whatis "Adds the Amazon Web Service (AWS) Command Line Interface (CLI) to your environment"
 
+module load engaging/python/2.7.12 
+module load sloan/python/2.7-modules
 prereq engaging/python/2.7.12 
 prereq sloan/python/2.7-modules
 
