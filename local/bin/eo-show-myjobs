@@ -15,7 +15,7 @@ squeue -l -h -u $USER -p sched_mit_sloan_batch
 squeue -l -h -u $USER -p sched_sloan_batch
 echo ""
 printf "${RED}MY JOBS ON SLOAN INTERACTIVE PARTITION${NC}\n"
-squeue -l -h -u $USER -p sched_mit_sloan
+squeue -l -h -u $USER -p sched_mit_sloan_interactive
 echo ""
 if [[ `groups` =~ .*sched_mit_thesmar* ]]; then
   printf "${RED}MY JOBS ON DAVID THESMAR GPU PARTITION${NC}\n"
