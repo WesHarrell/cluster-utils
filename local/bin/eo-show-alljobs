@@ -9,15 +9,18 @@
 #-m my partitions (default) based on groups membership
 RED='\033[0;31m'
 NC='\033[0m'
-printf "${RED}SLOAN BATCH PARTITION QUEUE${NC}\n"
-squeue -l -p sched_mit_sloan_batch
+printf "${RED}SLOAN BATCH PARTITION QUEUE: sched_mit_sloan_batch${NC}\n"
+#squeue -l -p sched_mit_sloan_batch
+squeue -p sched_mit_sloan_batch -l -o "%.15i  %.12j  %.12u %.7c %.7m %.14M %.10T %R"
 echo ""
-printf "${RED}SLOAN INTERACTIVE PARTITION QUEUE${NC}\n"
-squeue -l -p sched_mit_sloan_interactive
+printf "${RED}SLOAN INTERACTIVE PARTITION QUEUE: sched_mit_sloan_interactive${NC}\n"
+#squeue -l -p sched_mit_sloan_interactive
+squeue -p sched_mit_sloan_interactive -l -o "%.15i  %.12j  %.12u %.7c %.7m %.14M %.10T %R"
 echo ""
 if [[ `groups` =~ .*sched_mit_thesmar* ]]; then
-  printf "${RED}DAVID THESMAR GPU PARTITION QUEUE${NC}\n"
-  squeue -l -p sched_mit_thesmar
+  printf "${RED}DAVID THESMAR PARTITION QUEUE: sched_mit_thesmar${NC}\n"
+  squeue -p sched_mit_thesmar -l -o "%.15i  %.12j  %.12u %.7c %.7m %.6b %.14M %.10T %R"
+  #squeue -l -p sched_mit_thesmar
 fi
 echo ""
-exit 0
+exit
