@@ -7,8 +7,8 @@ grplist=`groups | grep _proj`
 for gr in `echo $grplist`; do
   if [[ $gr =~ .*_proj && -d $PROJHOME/$gr ]]; then
     find $PROJHOME/$gr -user $USER -exec chgrp $gr {} \;
-    find $PROJHOME/$gr -user $USER -type f -exec chmod g+w {} \;
-    find $PROJHOME/$gr -user $USER -type d -exec chmod g+ws {} \;
+    find $PROJHOME/$gr -user $USER -type f -exec chmod ug+rw {} \;
+    find $PROJHOME/$gr -user $USER -type d -exec chmod ug+rws {} \;
   fi
 done
 #fix pool
