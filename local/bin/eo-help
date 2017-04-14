@@ -10,12 +10,13 @@ For general questions or assistance send mail to stshelp@mit.edu
 List of helpful commands for Sloan eo users:
 
 eo-fix-permissions: Fix read/write permission on files/folders in your shared project spaces
+eo-job-report:      Provides some summary information about a job
 eo-link-projects:   Create links to your project spaces in your $HOME/projects directory
 eo-module-find:     Show applications matching a string, for example eo-module-find stata
 eo-show-quota:      Prints current storage quota and usage
 eo-show-partition:  Prints a list of available partitions and the availability of compute nodes
 eo-show-alljobs:    Prints a list of all Sloan user jobs
-eo-show-myjobs:     Prints a list of your running or pending jobs
+eo-show-myjobs:     Prints a list of your running or pending jobs as well as finished jobs from the last 48 hours
 eo-show-users:      Prints a list of Sloan users (kerberos username) with engaging accounts
 eo-help:            Prints this help information
 
