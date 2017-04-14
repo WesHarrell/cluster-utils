@@ -27,4 +27,8 @@ squeue -l -h -u $USER -p sched_any_quicktest
 squeue -l -h -u $USER -p sched_any
 squeue -l -h -u $USER -p newnodes
 echo ""
+d48=`date --date="2 days ago" +%Y-%m-%d`
+printf "${RED}MY JOBS WITHIN LAST 48 HOURS${NC}\n"
+sacct --format="JobID, State, JobName, End" -S $d48 -s CD -s CA -s F 
+echo ""
 exit 0
