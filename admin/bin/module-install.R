@@ -14,28 +14,29 @@ options( download.file.method = "wget")
 ##
 ## CRAN repo
 #
-options( repos = "ftp://mirror.hmdc.harvard.edu/CRAN" )
+#options( repos = "ftp://mirror.hmdc.harvard.edu/CRAN" )
+options( repos = "http://lib.stat.cmu.edu/R/CRAN/" )
 # Get new modules
-plist <- new.packages(lib.loc = "/home/software/sloan/local/lib/R/el6")
-sapply(plist,function(x){try(install.packages(x,lib="/home/software/sloan/local/lib/R/el6"))})
+plist <- new.packages(lib.loc = "/home/software/sloan/local/lib/R/el7")
+sapply(plist,function(x){try(install.packages(x,lib="/home/software/sloan/local/lib/R/el7"))})
 # Get updated modules
-ulist <- old.packages(lib.loc = "/home/software/sloan/local/lib/R/el6")
-sapply(ulist,function(x){try(install.packages(x,lib="/home/software/sloan/local/lib/R/el6"))})
+ulist <- old.packages(lib.loc = "/home/software/sloan/local/lib/R/el7")
+sapply(ulist,function(x){try(install.packages(x,lib="/home/software/sloan/local/lib/R/el7"))})
 #
 # Add useful tools from non-CRAN repo
 library("devtools")
-devtools::install_github("hadley/multidplyr", lib="/home/software/sloan/local/lib/R/el6")
+devtools::install_github("hadley/multidplyr", lib="/home/software/sloan/local/lib/R/el7")
 
 ##
 ## Omegahat repo
 #
 options( repos = "http://www.omegahat.org/R/" )
 # Get new modules
-plist <- new.packages(lib.loc = "/home/software/sloan/local/lib/R/el6")
-sapply(plist,function(x){try(install.packages(x,lib="/home/software/sloan/local/lib/R/el6"))})
+plist <- new.packages(lib.loc = "/home/software/sloan/local/lib/R/el7")
+sapply(plist,function(x){try(install.packages(x,lib="/home/software/sloan/local/lib/R/el7"))})
 # Get updated modules
-ulist <- old.packages(lib.loc = "/home/software/sloan/local/lib/R/el6")
-sapply(ulist,function(x){try(install.packages(x,lib="/home/software/sloan/local/lib/R/el6"))})
+ulist <- old.packages(lib.loc = "/home/software/sloan/local/lib/R/el7")
+sapply(ulist,function(x){try(install.packages(x,lib="/home/software/sloan/local/lib/R/el7"))})
 
 # Save any warnings
 cat (file="warnings.rinstall")

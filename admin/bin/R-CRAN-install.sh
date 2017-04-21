@@ -5,7 +5,6 @@
 #SBATCH -p sched_mit_thesmar
 #SBATCH --time=2-12:00
 
-module load engaging/R/3.2.5
 module load sloan/R/CRAN
 module load engaging/jdk/1.8.0-91
 module load engaging/jre/1.8.0-91
