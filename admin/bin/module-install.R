@@ -30,13 +30,13 @@ devtools::install_github("hadley/multidplyr", lib="/home/software/sloan/local/li
 ##
 ## Omegahat repo
 #
-options( repos = "http://www.omegahat.org/R/" )
+#options( repos = "http://www.omegahat.org/R/" )
 # Get new modules
-plist <- new.packages(lib.loc = "/home/software/sloan/local/lib/R/el7")
-sapply(plist,function(x){try(install.packages(x,lib="/home/software/sloan/local/lib/R/el7"))})
+#plist <- new.packages(lib.loc = "/home/software/sloan/local/lib/R/el7")
+#sapply(plist,function(x){try(install.packages(x,lib="/home/software/sloan/local/lib/R/el7"))})
 # Get updated modules
-ulist <- old.packages(lib.loc = "/home/software/sloan/local/lib/R/el7")
-sapply(ulist,function(x){try(install.packages(x,lib="/home/software/sloan/local/lib/R/el7"))})
+#ulist <- old.packages(lib.loc = "/home/software/sloan/local/lib/R/el7")
+#sapply(ulist,function(x){try(install.packages(x,lib="/home/software/sloan/local/lib/R/el7"))})
 
 # Save any warnings
 cat (file="warnings.rinstall")
