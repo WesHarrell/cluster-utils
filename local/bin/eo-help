@@ -18,6 +18,7 @@ eo-show-partition:  Prints a list of available partitions and the availability o
 eo-show-alljobs:    Prints a list of all Sloan user jobs
 eo-show-myjobs:     Prints a list of your running or pending jobs as well as finished jobs from the last 48 hours
 eo-show-users:      Prints a list of Sloan users (kerberos username) with engaging accounts
+eo-show-history:    Show jobs finished in last 48 hours
 eo-help:            Prints this help information
 
 You can use TAB completion to help you recall these commands, TAB completion uses the TAB key to help
