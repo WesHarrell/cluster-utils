@@ -29,5 +29,7 @@ sinfo -p sched_any_quicktest
 echo ""
 sinfo -p sched_any
 echo ""
+sinfo -p newnodes
+echo ""
 
 exit 0
