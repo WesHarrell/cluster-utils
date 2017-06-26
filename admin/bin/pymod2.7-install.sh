@@ -34,5 +34,4 @@ pip2.7 install pyodbc --target=/home/software/sloan/local/lib/py27 --upgrade
 pip2.7 install pymssql --target=/home/software/sloan/local/lib/py27 --upgrade
 pip2.7 install PyMySQL --target=/home/software/sloan/local/lib/py27 --upgrade
 pip2.7 install textstat --target=/home/software/sloan/local/lib/py27 --upgrade
-pip2.7 install sklean --target=/home/software/sloan/local/lib/py27 --upgrade
 
