@@ -4,6 +4,8 @@ PROJHOME=/nfs/sloanlab001/projects
 
 #make sure projects space and links exist, if not, create
 [ ! -d $HOME/projects ] && mkdir $HOME/projects
+#remove and remake
+find $HOME/projects/ -type l -name "*_proj" -exec rm -f {} \;
 grplist=`groups | grep _proj`
 if [[ $? -ne 0 ]]; then
   echo ""
