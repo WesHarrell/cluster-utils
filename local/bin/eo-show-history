@@ -1,7 +1,8 @@
 #!/bin/bash
 d48=`date --date="2 days ago" +%Y-%m-%d`
 printf "${RED}MY JOBS WITHIN LAST 48 HOURS${NC}\n"
-sacct --format="JobID, State, MaxRSS, JobName, End" -S $d48 -s CD -s CA -s F
+#sacct --format="JobID, State, MaxRSS, JobName, End" -S $d48 -s CD -s CA -s F
+sacct --format="JobID, State, JobName, MaxRSS, CPUTime" -S $d48 -s CD -s CA -s F
 echo ""
 echo "MaxRSS represents the maximum memory used by your job.  You can use"
 echo "this to help determine your future resource requests"
