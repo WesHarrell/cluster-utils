@@ -1,11 +1,15 @@
 #!/bin/bash
 #
-#SBATCH -c 4
-#SBATCH --mem=16G
-#SBATCH -p sched_mit_thesmar
+#SBATCH -c 8
+#SBATCH --mem=32
+#SBATCH -p sched_mit_sloan_interactive
 #SBATCH --time=2-12:00
+#SBATCH --mail-type=BEGIN,END,FAIL
+#SBATCH --mail-user=sts.rc@mit.edu
+#SBATCH -J CRAN-compile
 
-module load sloan/R/CRAN
+module load engaging/R/3.2.5
+module load sloan/R/3.2/CRAN
 module load engaging/jdk/1.8.0-91
 module load engaging/jre/1.8.0-91
 module load engaging/openmpi
@@ -20,4 +24,4 @@ module load engaging/JAGS/4.2.0
 module load sloan/texinfo
 module load sloan/texlive
 
-xvfb-run R --vanilla < ~/sloan/admin/bin/module-install.R
+xvfb-run R --vanilla < /home/software/sloan/admin/bin/R-3.2-CRAN-compile.R

@@ -3,8 +3,7 @@
 
 module-whatis "Adds the R library path to the pre-built CRAN modules"
 
-module load engaging/R/3.2.5
 prereq engaging/R/3.2.5
 
-setenv R_LIBS /home/software/sloan/local/lib/R/el6
+setenv R_LIBS /home/software/sloan/local/lib/R/el7
 
