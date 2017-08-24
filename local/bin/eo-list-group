@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+# Show sloan users
+#
+# Usage: module-find <application>
+#       Eg:  module-find matlab
+
+if [ $# -lt 1 ]; then
+  echo ""
+  echo "Usage: eo-list-group <string>"
+  echo "   Eg: eo-list-group sloanrc_proj"
+  echo ""
+  exit 1
+fi
+
+grp="$*"
+ldapsearch -x -LLL cn=$grp | grep ^member | awk -F": " '{print $2}'
