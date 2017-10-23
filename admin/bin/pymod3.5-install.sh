@@ -27,4 +27,5 @@ pip3.5 install Scrapy --target=/home/software/sloan/local/lib/py35 --upgrade
 pip3.5 install networkx --target=/home/software/sloan/local/lib/py35 --upgrade
 pip3.5 install tensorflow --target=/home/software/sloan/local/lib/py35 --upgrade
 pip3.5 install boto3 --target=/home/software/sloan/local/lib/py35 --upgrade
+pip3.5 install gensim --target=/home/software/sloan/local/lib/py35 --upgrade
 

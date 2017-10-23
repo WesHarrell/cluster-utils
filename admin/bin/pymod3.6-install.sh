@@ -33,5 +33,6 @@ $PIP install jupyter-core --target=/home/software/sloan/local/lib/py36 --upgrade
 $PIP install Scrapy --target=/home/software/sloan/local/lib/py36 --upgrade
 $PIP install networkx --target=/home/software/sloan/local/lib/py36 --upgrade
 $PIP install boto3 --target=/home/software/sloan/local/lib/py36 --upgrade
+$PIP install gensim --target=/home/software/sloan/local/lib/py36 --upgrade
 #$PIP install tensorflow --target=/home/software/sloan/local/lib/py36 --upgrade
 
