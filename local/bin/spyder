@@ -2,6 +2,10 @@
 #
 #wrapper for starting spyder
 #
-module load sloan/python/modules/2.7
+#module load sloan/python/modules/2.7
 
-python /home/software/sloan/local/lib/py27/spyderlib/spyder.py >& /dev/null
+#python /home/software/sloan/local/lib/py27/spyderlib/spyder.py >& /dev/null
+echo ""
+echo "Spyder is no longer works in Engaging.  We have no fix and recommend"
+echo "looking for an alternative. Apologies for the inconvenience"
+echo ""
