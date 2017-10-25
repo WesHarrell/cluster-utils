@@ -18,6 +18,10 @@ printf "${RED}SLOAN INTERACTIVE PARTITION${NC}\n"
 sinfo -p sched_mit_sloan_interactive
 echo ""
 
+printf "${RED}SLOAN GPU PARTITION${NC}\n"
+sinfo -p sched_mit_sloan_gpu
+echo ""
+
 if [[ `groups` =~ .*sched_mit_thesmar.* ]]; then
   printf "${RED}DAVID THESMAR GPU PARTITION${NC}\n"
   sinfo -p sched_mit_thesmar
