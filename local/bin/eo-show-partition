@@ -11,14 +11,14 @@
 RED='\033[0;31m'
 NC='\033[0m'
 echo ""
-printf "${RED}SLOAN BATCH PARTITION${NC}\n"
+printf "${RED}DEDICATED SLOAN PARTITIONS${NC}\n"
 sinfo -p sched_mit_sloan_batch
 echo ""
-printf "${RED}SLOAN INTERACTIVE PARTITION${NC}\n"
+#printf "${RED}SLOAN INTERACTIVE PARTITION${NC}\n"
 sinfo -p sched_mit_sloan_interactive
 echo ""
 
-printf "${RED}SLOAN GPU PARTITION${NC}\n"
+#printf "${RED}SLOAN GPU PARTITION${NC}\n"
 sinfo -p sched_mit_sloan_gpu
 echo ""
 
