@@ -9,18 +9,21 @@ for gr in `echo $grplist`; do
     find -L $PROJHOME/$gr -user $USER -exec chgrp $gr {} \;
     find -L $PROJHOME/$gr -user $USER -type f -exec chmod ug+rw {} \;
     find -L $PROJHOME/$gr -user $USER -type d -exec chmod ug+rws {} \;
+    echo "File permissions fixed in shared project $PROJHOME/$gr"
   fi
 done
 #fix pool
 chmod -f 700 /pool001/$USER
+echo "File permissions fixed in /pool001/$USER"
 #fix lustre
 chmod -f 700 /nobackup1/$USER
+echo "File permissions fixed in /nobackup1/$USER"
+
 
 echo""
-echo "File and folder permissions fixed on files owned by you.  To"
-echo "ensure all files in your shared project space are correct please"
-echo "ask your project colleagues to run the eo-fix-permissions command"
-
+echo "If you have shared project spaces, please make sure all members of your"
+echo "project group also run eo-fix-permissions to assure everyone in the "
+echo "project group has access"
 echo""
 
 exit 0
