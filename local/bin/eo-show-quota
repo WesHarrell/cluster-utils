@@ -15,7 +15,7 @@ print('\n\033[31m{0:>10}\033[0m'.format('Quotas for home, storage pool and share
 print('\n\033[1m{0:>30}  {1:10}  {2:10}  {3:10}\033[0m'.format('Storage','Usage (GB)','Quota (GB)','   % Used'))
 
 #get user quotas
-for x in range(2,len(lines)-1):
+for x in range(2,len(lines)-2):
 	lsplit = lines[x].replace(':',' ').split()
 	fsname = lsplit[1] + '/' + luser
 	q = lines[x].strip().split()
