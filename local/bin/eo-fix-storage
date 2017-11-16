@@ -1,0 +1,9 @@
+#!/bin/bash
+chmod -f 700 /pool001/$USER
+echo "File permissions fixed in /pool001/$USER"
+#fix lustre
+chmod -f 700 /nobackup1/$USER
+echo "File permissions fixed in /nobackup1/$USER"
+
+exit 0
+
