@@ -1,30 +1,57 @@
 #!/bin/bash
-# script fix shared space permissions
+# script to fix storage space permissions
 PROJHOME=/nfs/sloanlab001/projects
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+NC='\033[0m'
 
-#make sure projects space and links exist, if not, create
+# Get params || provide Usage
+if [[ $# -lt 1 || $1 =~ .*-h.* ]]; then
+  echo ""
+  echo "Fix shared storage permissions on files owned by you"
+  echo ""
+  echo "Usage: eo-fix-permissions <projectname_proj> | <all>"
+  echo "   Eg: eo-fix-permissions sloanrc_proj"
+  echo "or"
+  echo "   Eg: eo-fix-permissions all"
+  echo ""
+  echo "Using the parameter - all -  will fix permissions in all your folders"
+  echo "Please be aware this may take a long time"
+  echo ""
+  exit 1
+fi
+
+fixperm ()
+{
+  find -L $1 -user $2 -exec chgrp $3 {} \;
+  find -L $1 -user $2 -type f -exec chmod ug+rw {} \;
+  find -L $1 -user $2 -type d -exec chmod ug+rws {} \;
+  echo ""
+  printf "${GREEN}SUCCESS${NC}: File permissions fixed in shared project $1\n"
+}
+
 grplist=`groups | grep _proj`
-for gr in `echo $grplist`; do
-  if [[ $gr =~ .*_proj && -d $PROJHOME/$gr ]]; then
-    find -L $PROJHOME/$gr -user $USER -exec chgrp $gr {} \;
-    find -L $PROJHOME/$gr -user $USER -type f -exec chmod ug+rw {} \;
-    find -L $PROJHOME/$gr -user $USER -type d -exec chmod ug+rws {} \;
-    echo "File permissions fixed in shared project $PROJHOME/$gr"
-  fi
-done
-#fix pool
-chmod -f 700 /pool001/$USER
-echo "File permissions fixed in /pool001/$USER"
-#fix lustre
-chmod -f 700 /nobackup1/$USER
-echo "File permissions fixed in /nobackup1/$USER"
-
+if [ $1 = "all" ]; then
+    for gr in `echo $grplist`; do
+        if [[ $gr =~ .*_proj && -d $PROJHOME/$gr ]]; then
+          fixperm $PROJHOME/$gr $USER $gr
+        fi
+    done
+elif [[ $grplist =~ ${1} && -d $PROJHOME/$1 ]]; then
+  fixperm $PROJHOME/$1 $USER $1
+else
+  echo ""
+  printf "${RED}ERROR:${NC}  please check groupname and syntax\n"
+  echo ""
+  echo "If you are having trouble with this command or feel it has a bug please"
+  echo "e-mail us at stshelp@mit.edu and we will help."
+  echo ""
+  exit 1
+fi
 
 echo""
-echo "If you have shared project spaces, please make sure all members of your"
-echo "project group also run eo-fix-permissions to assure everyone in the "
-echo "project group has access"
+echo "Please make sure all members of your project group also run"
+echo "eo-fix-permissions to assure everyone in the project group has access"
 echo""
 
 exit 0
-
