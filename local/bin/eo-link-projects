@@ -20,9 +20,8 @@ for gr in `echo $grplist`; do
   fi
 done
 
-echo""
-echo 'Links to shared folders created in the "projects" directory of your home'
+echo ""
+echo "Links to shared folders created in ${HOME}/projects"
 echo ""
 
 exit 0
-
