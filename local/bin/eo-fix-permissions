@@ -6,7 +6,7 @@ GREEN='\033[0;32m'
 NC='\033[0m'
 
 # Get params || provide Usage
-if [[ $# -lt 1 || $1 =~ .*-h.* ]]; then
+if [[ $# -lt 1 || $1 = -h || $1 = --help ]]; then
   echo ""
   echo "Fix shared storage permissions on files owned by you"
   echo ""
