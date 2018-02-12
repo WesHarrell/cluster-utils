@@ -1,0 +1,9 @@
+#%Modules
+#
+
+module-whatis "Adds the R library path to the pre-built CRAN modules"
+
+prereq R
+
+setenv R_LIBS /nfs/sloanlab001/projects/sloanrc_proj/R-build/3.4
+
