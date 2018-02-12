@@ -2,7 +2,7 @@
 #
 MODPATH=/home/software/sloan/modulefiles/sloan/R
 LIBPATH=/home/software/sloan/local/lib/R
-CRANBUILD=/home/wharrell/git/engaging/admin/bin/R-CRAN-compile.R
+CRANBUILD=/home/software/sloan/admin/bin/R-CRAN-compile.R
 ROUT=/nfs/sloanlab001/projects/sloanrc_proj/tmp
 #
 if [[ $# -lt 2 || $1 = -h || $1 = --help ]]; then
