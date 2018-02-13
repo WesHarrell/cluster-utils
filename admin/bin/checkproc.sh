@@ -5,7 +5,7 @@
 #The processes in question should be manually terminated.
 
 TMPU=`mktemp`
-PROCLIST="exec/R python julia gcc matlab mathematica jupyter stata sas"
+PROCLIST="exec/R python julia gcc matlab mathematica stata sas"
 FILTER="grep|srun|sbatch"
 
 for p in `echo $PROCLIST`; do
