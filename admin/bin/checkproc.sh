@@ -15,7 +15,7 @@ for p in `echo $PROCLIST`; do
     do
       lppid=`echo $line | cut -d' ' -f1`
       lproc=`echo $line | cut -d' ' -f2-`
-      luser=`ps a -o ppid,user | grep $lppid | cut -d' ' -f2`
+      luser=`ps a -o ppid,user | grep $lppid | awk '{print $2}'`
 
       if [[ "$luser" != "root" ]]; then
         mailx -s "EOSLOAN: $luser is running $lproc" wharrell@mit.edu<<EOM
