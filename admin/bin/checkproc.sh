@@ -6,10 +6,11 @@
 
 TMPU=`mktemp`
 PROCLIST="exec/R python julia gcc matlab mathematica stata sas"
-FILTER="screen|tmux|tail|less|sftp|scp|wget|curl|rsync|nano|vim|vi|emac|grep|srun|sbatch"
+FILTER="screen |tmux |tail |less |sftp |scp |wget |curl |rsync |nano |vim |vi "
+FILTER2="emac |grep |srun |sbatch "
 
 for p in `echo $PROCLIST`; do
-  ps a -o ppid,args | grep -i $p | egrep -v "($FILTER)" | sort -u > $TMPU
+  ps a -o ppid,args | grep -i $p | egrep -v "($FILTER|$FILTER2)" | sort -u > $TMPU
   if [[ -f $TMPU ]]; then
     cat $TMPU | while read line
     do
@@ -45,9 +46,6 @@ Sloan RC Team
 EOW
 
       fi
-
-  #    printf "User: %s is running Application: %s on eosloan \n" "$luser" "$lproc"
-  #    dummy="yes"
     done
   fi
 done
