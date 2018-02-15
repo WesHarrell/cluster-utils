@@ -6,7 +6,7 @@
 
 TMPU=`mktemp`
 PROCLIST="exec/R python julia gcc matlab mathematica stata sas"
-FILTER="grep|srun|sbatch"
+FILTER="screen|tmux|tail|less|sftp|scp|wget|curl|rsync|nano|vim|vi|emac|grep|srun|sbatch"
 
 for p in `echo $PROCLIST`; do
   ps a -o ppid,args | grep -i $p | egrep -v "($FILTER)" | sort -u > $TMPU
