@@ -1,15 +1,18 @@
 #!/bin/bash
 #
-MODPATH=/home/software/sloan/modulefiles/sloan/R
-LIBPATH=/home/software/sloan/local/lib/R
-CRANBUILD=/home/software/sloan/admin/bin/R-CRAN-compile.R
-ROUT=/nfs/sloanlab001/projects/sloanrc_proj/tmp
+SLOANRC=/nfs/sloanlab001/projects/sloanrc_proj
+ADMIN=/home/software/sloan/admin
+MODPATH=$ADMIN/modulefiles/test/R
+BUILDPATH=$SLOANRC/R-build
+#CRANBUILD=$ADMIN/bin/R-CRAN-compile.R
+CRANBUILD=/home/wharrell/git/engaging/admin/bin/R-CRAN-compile.R
+ROUT=$SLOANRC/tmp
 #
 if [[ $# -lt 2 || $1 = -h || $1 = --help ]]; then
   echo ""
-  echo "Build CRAN"
+  echo "Build CRAN in build dir"
   echo ""
-  echo "Usage: R-CRAN-compile.sh <CRAN-Repo-Version> <R-Env-Module-Path>"
+  echo "Usage: R-CRAN-compile.sh <CRAN-Build-Repo> <R-Env-Module-Path>"
   echo "   Eg: R-CRAN-compile.sh 3.4 R/3.4.2"
   echo ""
   exit 1
@@ -18,15 +21,19 @@ fi
 if [[ ! -e $MODPATH/$1/CRAN ]]; then
   echo "The modulefile $MODPATH/$1/CRAN does not exist, please create"
   exit 1
-elif [[ ! -d $LIBPATH/$1 ]]; then
-  echo "The library path $LIBPATH/$1 does not exist, please create"
+elif [[ ! -d $BUILDPATH/$1 ]]; then
+  echo "The library build path $BUILDPATH/$1 does not exist, please create"
   exit 1
 else
   echo "Loading Modules..."
 fi
 
+#Ensure test modules are loaded
+module use -a /home/software/sloan/admin/modulefiles
+
+#Load modules required for successful build
 module load $2
-module load sloan/R/$1/CRAN
+module load test/R/$1/CRAN
 module load engaging/jdk/1.8.0-91
 module load engaging/jre/1.8.0-91
 module load engaging/OpenBLAS/0.2.14
@@ -54,8 +61,10 @@ fi
 
 echo "Submitting job to build CRAN, check CRAN-build logfiles"
 echo "in $ROUT for any specific log or error information."
+echo "Once completed, sync data to user repo area and update modulefile"
+echo "if necessary, see docs in OneNote for details"
 
-sbatch -c 8 --mem=64G --gres=gpu:1 -p sched_mit_thesmar --time=3-00:00 \
+sbatch -c 8 --mem=128G --gres=gpu:1 -p sched_mit_thesmar --time=5-00:00 \
   -o $ROUT/CRAN-build.out -e $ROUT/CRAN-build.err \
   --mail-type=BEGIN,END,FAIL --mail-user=sts.rc@mit.edu -J CRAN-build \
   xvfb-run R CMD BATCH --vanilla "--args $1" $CRANBUILD $ROUT/CRAN-build.Rout

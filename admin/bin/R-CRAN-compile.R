@@ -7,7 +7,7 @@ options(INSTALL_opts = "--no-test-load")
 options(download.file.method = "wget")
 
 args = commandArgs()
-base = "/home/software/sloan/local/lib/R/"
+base = "/nfs/sloanlab001/projects/sloanrc_proj/R-build/"
 plib = paste(base, args[9], sep = "")
 
 ## CRAN repo options( repos = 'ftp://mirror.hmdc.harvard.edu/CRAN' )
@@ -31,3 +31,5 @@ devtools::install_github("IRkernel/IRkernel", lib = plib)
 # Save any warnings
 cat(file = "warnings.rinstall")
 warnings(file = "warnings.rinstall", append = TRUE)
+
+q()
