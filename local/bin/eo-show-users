@@ -7,7 +7,7 @@ ldapsearch -x cn=sched_mit_sloan | grep ^member | awk -F": " '{print $2}' > $tmp
 
 cat $tmpf | while read line; do
   lshell=`ldapsearch -x uid=$line | grep loginShell | awk -F": " '{print $2}'`
-  [[ $lshell != "/bin/false" ]] && echo $line
+  [[ $lshell != "/bin/false" && ! -z $lshell ]] && echo $line
 done
 
 exit 0
