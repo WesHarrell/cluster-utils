@@ -46,7 +46,6 @@ EOM
 for p in `echo $PROCLIST`; do
   ps a --no-headers -o ppid,args | grep -i $p | egrep -i -v "($FILTER|$FILTER2|$FILTER3)" | sort -u > $TMPU
   if [[ -s $TMPU ]]; then
-    cat $TMPU
     cat $TMPU | while read line
     do
       lppid=`echo $line | cut -d' ' -f1`
