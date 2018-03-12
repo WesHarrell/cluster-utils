@@ -44,7 +44,7 @@ EOM
 }
 
 for p in `echo $PROCLIST`; do
-  ps a --no-headers -o ppid,args | grep -i $p | egrep -i -v "($FILTER|$FILTER2|$FILTER3)" | sort -u > $TMPU
+  ps a --no-headers -o ppid:1,args:1 | grep -i $p | egrep -i -v "($FILTER|$FILTER2|$FILTER3)" | sort -u > $TMPU
   if [[ -s $TMPU ]]; then
     cat $TMPU | while read line
     do
