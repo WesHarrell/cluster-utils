@@ -10,25 +10,13 @@ FILTER="screen |tmux |tail |less |sftp |scp |wget |curl |rsync |nano |vim |vi "
 FILTER2="firefox |mozilla |emacs |grep |srun |sbatch |chmod |chgrp |chown "
 FILTER3="sublime_text |cat |head |more |view "
 
-for p in `echo $PROCLIST`; do
-  ps a -o ppid,args | grep -i $p | egrep -i -v "($FILTER|$FILTER2|$FILTER3)" | sort -u > $TMPU
-  if [[ -f $TMPU ]]; then
-    cat $TMPU | while read line
-    do
-      lppid=`echo $line | cut -d' ' -f1`
-      lproc=`echo $line | cut -d' ' -f2-`
-      luser=`ps a -o ppid,user | grep $lppid | awk '{print $2}'`
-
-      if [[ "$luser" != "root" ]]; then
-        mailx -s "EOSLOAN: $luser is running $lproc" wharrell@mit.edu<<EOM
-User: $luser running $lproc on EOSLOAN
-EOM
-
-        mailx -s "WARNING: process on Engaging login node" $luser@mit.edu<<EOW
+mailuser ()
+{
+mailx -s "WARNING: process on Engaging login node" $1@mit.edu<<EOW
 
 You are running the following process on the Engaging login node:
 
-$lproc
+$2
 
 This has been reported and your process will be terminated.
 
@@ -46,10 +34,30 @@ to contact us at stshelp@mit.edu
 Sloan RC Team
 
 EOW
+}
 
-      fi
+mailadmin ()
+{
+mailx -s "EOSLOAN: $1 is running $2" wharrell@mit.edu<<EOM
+User: $luser running $lproc on EOSLOAN
+EOM
+}
+
+for p in `echo $PROCLIST`; do
+  ps a --no-headers -o ppid,args | grep -i $p | egrep -i -v "($FILTER|$FILTER2|$FILTER3)" | sort -u > $TMPU
+  if [[ -s $TMPU ]]; then
+    cat $TMPU
+    cat $TMPU | while read line
+    do
+      lppid=`echo $line | cut -d' ' -f1`
+      lproc=`echo $line | cut -d' ' -f2-`
+      luser=`ps a --no-headers -o ppid:1,user:1 | grep $lppid | grep -v root | awk '{print $2}'`
+      mailadmin $luser $lproc
+      mailuser $luser $lproc
     done
   fi
 done
+
+#rm -f $TMPU
 
 exit 0
