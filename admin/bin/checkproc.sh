@@ -7,10 +7,11 @@
 TMPU=`mktemp`
 PROCLIST="exec/R python julia gcc matlab mathematica stata sas"
 FILTER="screen |tmux |tail |less |sftp |scp |wget |curl |rsync |nano |vim |vi "
-FILTER2="emac |grep |srun |sbatch "
+FILTER2="firefox |mozilla |emacs |grep |srun |sbatch |chmod |chgrp |chown "
+FILTER3="sublime_text |cat |head |more |view "
 
 for p in `echo $PROCLIST`; do
-  ps a -o ppid,args | grep -i $p | egrep -v "($FILTER|$FILTER2)" | sort -u > $TMPU
+  ps a -o ppid,args | grep -i $p | egrep -i -v "($FILTER|$FILTER2|$FILTER3)" | sort -u > $TMPU
   if [[ -f $TMPU ]]; then
     cat $TMPU | while read line
     do
@@ -32,7 +33,8 @@ $lproc
 This has been reported and your process will be terminated.
 
 No jobs or applications should be run from the login node.  ALL jobs must be
-submitted with srun, sbatch, mpirun or other job submission tool.
+submitted with srun or sbatch.
+
 Please read through our documentation for the proper way to run jobs on
 the cluster:
 
