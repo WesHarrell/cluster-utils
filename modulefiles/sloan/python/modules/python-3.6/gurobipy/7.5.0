@@ -1,5 +1,4 @@
-#
-#Modules
+#%Modules
 #
 
 module-whatis "Adds the Gurobi Python module: gurobipy"
