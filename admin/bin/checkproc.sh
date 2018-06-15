@@ -5,9 +5,9 @@
 #The processes in question should be manually terminated.
 
 TMPU=`mktemp`
-PROCLIST="exec/R python julia gcc matlab mathematica stata sas"
+PROCLIST="exec/R bin/rsession rstudio python julia gcc matlab mathematica stata sas sqlite"
 FILTER="screen |tmux |tail |less |sftp |scp |wget |curl |rsync |nano |vim |vi "
-FILTER2="firefox |mozilla |emacs |grep |srun |sbatch |chmod |chgrp |chown "
+FILTER2="firefox |mozilla |emacs |grep |srun |^sbatch |chmod |chgrp |chown "
 FILTER3="sublime_text |cat |head |more |view "
 
 mailuser ()
@@ -57,6 +57,6 @@ for p in `echo $PROCLIST`; do
   fi
 done
 
-#rm -f $TMPU
+rm -f $TMPU
 
 exit 0
